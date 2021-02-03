@@ -9,6 +9,9 @@ namespace EFDataAccessLibrary.DataAccess
     public class ProductContext : DbContext
     {
         public ProductContext(DbContextOptions options) : base(options) {}
-        public DbSet<Pants> Pants { get; set; }
+        public DbSet<Trousers> Trousers { get; set; }
+        public DbSet<Hat> Hats { get; set; }
+        public DbSet<Jacket> Jackets { get; set; }
+        public DbSet<Jewelry> Jewelries { get; set; }
     }
 }
