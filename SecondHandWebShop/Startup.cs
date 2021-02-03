@@ -25,15 +25,14 @@ namespace SecondHandWebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-<<<<<<< HEAD
+            // Removed merge conflict HEAD from github
             services.AddSession();
             services.AddMvc();
-=======
             services.AddDbContext<ProductContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
->>>>>>> 68cb8e0c112f80546f1b7f6d5ed8fdc05fc6a39b
+            // End of HEAD from github
             services.AddRazorPages();
         }
 
