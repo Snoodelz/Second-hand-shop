@@ -25,10 +25,14 @@ namespace SecondHandWebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Removed merge conflict HEAD from github
+            services.AddSession();
+            services.AddMvc();
             services.AddDbContext<ProductContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
+            // End of HEAD from github
             services.AddRazorPages();
         }
 
@@ -45,7 +49,7 @@ namespace SecondHandWebShop
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
