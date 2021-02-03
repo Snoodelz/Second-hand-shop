@@ -1,6 +1,8 @@
+using EFDataAccessLibrary.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,8 +25,15 @@ namespace SecondHandWebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+<<<<<<< HEAD
             services.AddSession();
             services.AddMvc();
+=======
+            services.AddDbContext<ProductContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("Default"));
+            });
+>>>>>>> 68cb8e0c112f80546f1b7f6d5ed8fdc05fc6a39b
             services.AddRazorPages();
         }
 
