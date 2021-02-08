@@ -48,10 +48,5 @@ namespace SecondHandWebShop.Pages
             }
 
         }
-        public void PassUsr()
-        {
-            Password = Password;
-            UserName = UserName;
-        }
     }
 }
