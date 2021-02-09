@@ -1,46 +1,68 @@
 ﻿@page
 @model SecondHandWebShop.Pages.LoginModel
 @{
+    ViewData["Title"] = "Login";
 }
 
+<link rel="stylesheet" href="~/css/loginstylesheet.css">
 
-<h1>Admin Login</h1>
 
 
-@Model.Message
-<form method="post" asp-page="Login">
-        <fieldset>
-            <div class="form-group">
-                <label asp-for="UserName">Email address</label>
-                <span asp-validation-for="UserName" class="text-danger"></span>
-                <input type="text" asp-for="@Model.UserName" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" />
-                <small id="emailHelp" class="form-text text-muted">This login is for <strong>admins only</strong>.</small>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password">Password</label>
-                <span asp-validation-for="Password" class="text-danger"></span>
-                <input type="password" asp-for="@Model.Password" class="form-control" id="InputPassword" placeholder="Password"/>
-            </div>
-            <button type="submit" value="Login" class="btn btn-primary">Submit</button>
-        </fieldset>
-    </form>
+<div class="container">
+    <div class="login-container">
+        <div id="output"></div>
+        <div class="form-box">
+            <br />
+            <h4>Admin Login</h4>
+            <br />
+            @Model.Message
+            <form method="post" asp-page="Login">
+                <input type="text" placeholder="Username" asp-for="@Model.UserName" />
+                <input type="password" placeholder="Password" asp-for="@Model.Password" />
+                <button class="btn btn-info btn-block login" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@*<h1>Admin Login</h1>
+
+
+    @Model.Message
+    <form method="post" asp-page="Login">
+            <fieldset>
+                <div class="form-group">
+                    <label asp-for="UserName">Email address</label>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <input type="text" asp-for="@Model.UserName" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <small id="emailHelp" class="form-text text-muted">This login is for <strong>admins only</strong>.</small>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <input type="password" asp-for="@Model.Password" class="form-control" id="InputPassword" placeholder="Password"/>
+                </div>
+                <button type="submit" value="Login" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>*@
+
 
 @*<form method="post" asp-page="Login">
-    <table>
-        <tr>
-            <td>Username</td>
-            <td><input type="text" asp-for="@Model.UserName" /> </td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" asp-for="@Model.Password" /></td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><input type="submit" value="Login" /></td>
-        </tr>
-    </table>
-</form>*@
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" asp-for="@Model.UserName" /> </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" asp-for="@Model.Password" /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Login" /></td>
+            </tr>
+        </table>
+    </form>*@
 
 @*<form method="post">
         <fieldset>
