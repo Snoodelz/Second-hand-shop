@@ -1,0 +1,72 @@
+﻿@page
+@model SecondHandWebShop.Pages.Trouser.EditTrousersModel
+@{
+}
+
+
+<div class="container">
+    <h3>Edit Trouser</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <input asp-for="Trousers.Id" type="hidden" />
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Name"></label>
+                <input asp-for="Trousers.Name" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Description"></label>
+                <input asp-for="Trousers.Description" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Price"></label>
+                <input asp-for="Trousers.Price" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.ImageUrl"></label>
+                <input asp-for="Trousers.ImageUrl" cl class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Brand"></label>
+                <input asp-for="Trousers.Brand" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.TypeOf"></label>
+                <input asp-for="Trousers.TypeOf" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Gender"></label>
+                <input asp-for="Trousers.Gender" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Size"></label>
+                <input asp-for="Trousers.Size" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Color"></label>
+                <input asp-for="Trousers.Color" class="form-control" />
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="alltrousers">Cancel</a>
+    </form>
+</div>

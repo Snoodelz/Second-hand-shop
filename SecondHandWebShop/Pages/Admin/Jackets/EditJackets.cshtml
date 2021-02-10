@@ -1,0 +1,77 @@
+﻿@page
+@model SecondHandWebShop.Pages.Jackets.EditJacketsModel
+@{
+}
+
+<div class="container">
+    <h3>Edit Jacket</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <input asp-for="Jackets.Id" type="hidden" />
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.Name"></label>
+                <input asp-for="Jackets.Name" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.Description"></label>
+                <input asp-for="Jackets.Description" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.Price"></label>
+                <input asp-for="Jackets.Price" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.ImageUrl"></label>
+                <input asp-for="Jackets.ImageUrl" cl class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.Brand"></label>
+                <input asp-for="Jackets.Brand" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.TypeOf"></label>
+                <input asp-for="Jackets.TypeOf" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.Gender"></label>
+                <input asp-for="Jackets.Gender" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.Material"></label>
+                <input asp-for="Jackets.Material" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.Size"></label>
+                <input asp-for="Jackets.Size" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jackets.Color"></label>
+                <input asp-for="Jackets.Color" class="form-control" />
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="alljackets">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,69 @@
+﻿@page
+@model SecondHandWebShop.Pages.Jewelries.CreateJewelriesModel
+@{
+}
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add Jewelry</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jewelries.Name"></label>
+                <input asp-for="Jewelries.Name" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Jewelries.Name"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jewelries.Description"></label>
+                <input asp-for="Jewelries.Description" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Jewelries.Description"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jewelries.Price"></label>
+                <input asp-for="Jewelries.Price" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Jewelries.Price"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jewelries.ImageUrl"></label>
+                <input asp-for="Jewelries.ImageUrl" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Jewelries.ImageUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jewelries.Brand"></label>
+                <input asp-for="Jewelries.Brand" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Jewelries.Brand"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jewelries.TypeOf"></label>
+                <input asp-for="Jewelries.TypeOf" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Jewelries.TypeOf"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Jewelries.Material"></label>
+                <input asp-for="Jewelries.Material" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Jewelries.Material"></span>
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="alljewelries">Cancel</a>
+    </form>
+</div>

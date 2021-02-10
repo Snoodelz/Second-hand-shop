@@ -13,5 +13,7 @@ namespace EFDataAccessLibrary.DataAccess
         public DbSet<Hat> Hats { get; set; }
         public DbSet<Jacket> Jackets { get; set; }
         public DbSet<Jewelry> Jewelries { get; set; }
+        public DbSet<Shirt> Shirts { get; set; }
+        public DbSet<Shoe> Shoes { get; set; }
     }
 }

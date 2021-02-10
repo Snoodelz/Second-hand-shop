@@ -1,0 +1,90 @@
+﻿@page
+@model SecondHandWebShop.Pages.Shoes.AllShoesModel
+@{
+}
+
+<h2>Shoes</h2>
+
+<p>
+    <a asp-page="CreateShoes">Add new shoe</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+            <th>
+                @Html.DisplayName("Date")
+            </th>
+            <th>
+                @Html.DisplayName("ImageUrl")
+            </th>
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+            <th>
+                @Html.DisplayName("TypeOf")
+            </th>
+            <th>
+                @Html.DisplayName("Gender")
+            </th>
+            <th>
+                @Html.DisplayName("Size")
+            </th>
+            <th>
+                @Html.DisplayName("Material")
+            </th>
+            <th>Edit | Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.allShoes)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+                <img src="@Url.Content(item.ImageUrl)" alt="alternative text" style="width:50px;height:50px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material)
+            </td>
+            <td>
+                <a asp-page="./EditShoes" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./ShoesDetail" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./AllShoes" onclick="return confirm('Are you sure you want to delete this item?');" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -14,5 +14,10 @@ namespace EFDataAccessLibrary.Models
         public string ImageUrl { get; set; }
         public string Brand { get; set; }
         public string TypeOf { get; set; }
+
+        public Clothing()
+        {
+            Date = DateTime.Now;
+        }
     }
 }

@@ -1,0 +1,89 @@
+﻿@page
+@model SecondHandWebShop.Pages.Shirts.CreateShirtsModel
+@{
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add Shirt</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.Name"></label>
+                <input asp-for="Shirts.Name" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.Name"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.Description"></label>
+                <input asp-for="Shirts.Description" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.Description"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.Price"></label>
+                <input asp-for="Shirts.Price" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.Price"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.ImageUrl"></label>
+                <input asp-for="Shirts.ImageUrl" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.ImageUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.Brand"></label>
+                <input asp-for="Shirts.Brand" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.Brand"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.TypeOf"></label>
+                <input asp-for="Shirts.TypeOf" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.TypeOf"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.Gender"></label>
+                <input asp-for="Shirts.Gender" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.Gender"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.Material"></label>
+                <input asp-for="Shirts.Material" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.Material"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.Size"></label>
+                <input asp-for="Shirts.Size" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.Size"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Shirts.Color"></label>
+                <input asp-for="Shirts.Color" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Shirts.Color"></span>
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="allshirts">Cancel</a>
+    </form>
+</div>

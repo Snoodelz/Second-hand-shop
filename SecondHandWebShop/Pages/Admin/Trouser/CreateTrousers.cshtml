@@ -1,0 +1,82 @@
+﻿@page
+@model SecondHandWebShop.Pages.Trouser.CreateTrousersModel
+@{
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add Trouser</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Name"></label>
+                <input asp-for="Trousers.Name" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.Name"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Description"></label>
+                <input asp-for="Trousers.Description" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.Description"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Price"></label>
+                <input asp-for="Trousers.Price" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.Price"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.ImageUrl"></label>
+                <input asp-for="Trousers.ImageUrl" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.ImageUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Brand"></label>
+                <input asp-for="Trousers.Brand" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.Brand"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.TypeOf"></label>
+                <input asp-for="Trousers.TypeOf" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.TypeOf"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Gender"></label>
+                <input asp-for="Trousers.Gender" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.Gender"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Size"></label>
+                <input asp-for="Trousers.Size" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.Size"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Trousers.Color"></label>
+                <input asp-for="Trousers.Color" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Trousers.Color"></span>
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="alltrousers">Cancel</a>
+    </form>
+</div>
