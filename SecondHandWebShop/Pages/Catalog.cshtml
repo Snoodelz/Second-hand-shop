@@ -1,0 +1,150 @@
+﻿@page
+@model CatalogModel
+@{
+    ViewData["Title"] = "Katalog";
+}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-3">
+
+            <img src="img/logo.png">
+            <div class="list-group">
+                <a href="?category=Hats" class="list-group-item">Hattar</a>
+                <a href="?category=Jackets" class="list-group-item">Jackor</a>
+                <a href="?category=Jewelry" class="list-group-item">Smycken</a>
+                <a href="?category=Shirt" class="list-group-item">Tröjor</a>
+                <a href="?category=Trousers" class="list-group-item">Byxor</a>
+                <a href="?category=Shoes" class="list-group-item">Skor</a>
+            </div>
+
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+
+            <div class="row">
+                @foreach (var hat in Model.Hats)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="@hat.ImageUrl" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@hat.Name</a>
+                                </h4>
+                                <h5>@hat.Price kr</h5>
+                                <p class="card-text">@hat.Description</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">@hat.Brand</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @foreach (var jacket in Model.Jackets)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="@jacket.ImageUrl" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@jacket.Name</a>
+                                </h4>
+                                <h5>@jacket.Price kr</h5>
+                                <p class="card-text">@jacket.Description</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">@jacket.Brand</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @foreach (var jewelry in Model.Jewelries)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="@jewelry.ImageUrl" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@jewelry.Name</a>
+                                </h4>
+                                <h5>@jewelry.Price kr</h5>
+                                <p class="card-text">@jewelry.Description</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">@jewelry.Brand</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @foreach (var shirt in Model.Shirts)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="@shirt.ImageUrl" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@shirt.Name</a>
+                                </h4>
+                                <h5>@shirt.Price kr</h5>
+                                <p class="card-text">@shirt.Description</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">@shirt.Brand</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @foreach (var trousers in Model.Trousers)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="@trousers.ImageUrl" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@trousers.Name</a>
+                                </h4>
+                                <h5>@trousers.Price kr</h5>
+                                <p class="card-text">@trousers.Description</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">@trousers.Brand</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @foreach (var shoe in Model.Shoes)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="@shoe.ImageUrl" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@shoe.Name</a>
+                                </h4>
+                                <h5>@shoe.Price kr</h5>
+                                <p class="card-text">@shoe.Description</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">@shoe.Brand</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
