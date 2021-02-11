@@ -4,6 +4,21 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome @Model.UserName</h1>
+    <h1 class="display-4">Welcome @*@Model.UserName*@ Marianne</h1>
     <a asp-page="AdminView" asp-page-handler="Logout">Logout</a>
 </div>
+<br />
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Add
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="./Admin/Hats/AllHats">Hats</a>
+        <a class="dropdown-item" href="./Admin/Jackets/AllJackets">Jackets</a>
+        <a class="dropdown-item" href="./Admin/Jewelries/AllJewelries">Jewelries</a>
+        <a class="dropdown-item" href="./Admin/Shirts/AllShirts">Shirts</a>
+        <a class="dropdown-item" href="./Admin/Shoes/AllShoes">Shoes</a>
+        <a class="dropdown-item" href="./Admin/Trouser/AllTrousers">Trousers</a>
+    </div>
+</div>
+
