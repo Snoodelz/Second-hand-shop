@@ -1,4 +1,3 @@
-using EFDataAccessLibrary.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SecondHandWebShop.Data;
 
 namespace SecondHandWebShop
 {
@@ -28,12 +28,15 @@ namespace SecondHandWebShop
             // Removed merge conflict HEAD from github
             services.AddSession();
             services.AddMvc();
-            services.AddDbContext<ProductContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("Default"));
-            });
+            //services.AddDbContext<ProductContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("Default"));
+            //});
             // End of HEAD from github
             services.AddRazorPages();
+
+            services.AddDbContext<ProductContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ProductContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

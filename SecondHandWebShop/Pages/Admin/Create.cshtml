@@ -1,0 +1,113 @@
+﻿@page
+@model SecondHandWebShop.Pages.Admin.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<div class="container">
+    <h3>Add Product</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Name"></label>
+                <input asp-for="Clothing.Name" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Name"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Category"></label>
+                <input asp-for="Clothing.Category" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Category"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Description"></label>
+                <input asp-for="Clothing.Description" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Description"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Price"></label>
+                <input asp-for="Clothing.Price" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Price"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Discount"></label>
+                <input asp-for="Clothing.Discount" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Discount"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.ImageUrl"></label>
+                <input asp-for="Clothing.ImageUrl" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.ImageUrl"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Brand"></label>
+                <input asp-for="Clothing.Brand" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Brand"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Color"></label>
+                <input asp-for="Clothing.Color" cl class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Color"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+
+                <select id="selgender" asp-for="Clothing.Gender">
+                    <option selected disabled>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Unisex">Unisex</option>
+
+                </select>
+
+
+                @*<label asp-for="Clothing.Gender"></label>
+                    <input asp-for="Clothing.Gender" cl class="form-control" />
+                    <span class="alert-danger" asp-validation-for="Clothing.Gender"></span>*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Material"></label>
+                <input asp-for="Clothing.Material" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Material"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Size"></label>
+                <input asp-for="Clothing.Size" class="form-control" />
+                <span class="alert-danger" asp-validation-for="Clothing.Size"></span>
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="index">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

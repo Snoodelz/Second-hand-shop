@@ -26,7 +26,7 @@
         <div class="col-lg-9">
 
             <div class="row">
-                @foreach (var hat in Model.Hats)
+                @foreach (var hat in Model.AllHats)
                 {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 }
-                @foreach (var jacket in Model.Jackets)
+                @foreach (var jacket in Model.AllJackets)
                 {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 }
-                @foreach (var jewelry in Model.Jewelries)
+                @foreach (var jewelry in Model.AllJewelries)
                 {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 }
-                @foreach (var shirt in Model.Shirts)
+                @foreach (var shirt in Model.AllShirts)
                 {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                 }
-                @foreach (var trousers in Model.Trousers)
+                @foreach (var trousers in Model.AllTrousers)
                 {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
@@ -117,7 +117,7 @@
                     </div>
                 }
 
-                @foreach (var shoe in Model.Shoes)
+                @foreach (var shoe in Model.AllShoes)
                 {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">

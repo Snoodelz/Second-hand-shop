@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using EFDataAccessLibrary.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using SecondHandWebShop.Data;
+using SecondHandWebShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,33 @@ namespace SecondHandWebShop.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly EFDataAccessLibrary.DataAccess.ProductContext _context;
+        private readonly ProductContext _context;
 
-        public IndexModel(EFDataAccessLibrary.DataAccess.ProductContext context)
+        public IndexModel(ProductContext context)
         {
             _context = context;
         }
-        
-        public List<Hat> Hats { get; set; }
-        public List<Jacket> Jackets { get; set; }
+
+        public IList<Clothing> AllClothing { get; set; }
+        public IEnumerable<Clothing> AllHats { get; set; }
+        public IEnumerable<Clothing> AllJackets { get; set; }
+        public IEnumerable<Clothing> AllJewelries { get; set; }
+        public IEnumerable<Clothing> AllShirts { get; set; }
+        public IEnumerable<Clothing> AllShoes { get; set; }
+        public IEnumerable<Clothing> AllTrousers { get; set; }
+        public IEnumerable<Clothing> ProductsOnDiscount { get; set; }
+
 
         public void OnGet()
         {
-            Hats = _context.Hats.ToList();
-            Jackets = _context.Jackets.ToList();
-
+            AllClothing = _context.Clothing.ToList();
+            AllHats = _context.Clothing.Where(c => c.Category == "Hat").ToList();
+            AllJackets = _context.Clothing.Where(c => c.Category == "Jacket").ToList();
+            AllJewelries = _context.Clothing.Where(c => c.Category == "Jewelry").ToList();
+            AllShirts = _context.Clothing.Where(c => c.Category == "Shirt").ToList();
+            AllShoes = _context.Clothing.Where(c => c.Category == "Shoe").ToList();
+            AllTrousers = _context.Clothing.Where(c => c.Category == "Trouser").ToList();
+            ProductsOnDiscount = _context.Clothing.Where(d => d.Discount != 0).ToList();
         }
     }
 }

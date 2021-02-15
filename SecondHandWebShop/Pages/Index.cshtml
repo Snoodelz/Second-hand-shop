@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
 <div class="container">
 
     <div class="row">
@@ -45,50 +44,42 @@
             </div>
             <p class="text-center">Utvalda produkter</p>
             <div class="row">
-                @for (int i = 0; i < 3; i++)
+                @foreach (var item in Model.AllClothing.TakeLast(3))
                 {
-                    if (Model.Hats.Count > i)
-                    {
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="@Model.Hats[i].ImageUrl" alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">@Model.Hats[i].Name</a>
-                                    </h4>
-                                    <h5>@Model.Hats[i].Price kr</h5>
-                                    <p class="card-text">@Model.Hats[i].Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">@Model.Hats[i].Brand</small>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-                @for (int i = 0; i < 3; i++)
-                {
-                    if (Model.Jackets.Count > i)
-                    {
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="@Model.Jackets[i].ImageUrl" alt=""></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">@Model.Jackets[i].Name</a>
-                                    </h4>
-                                    <h5>@Model.Jackets[i].Price kr</h5>
-                                    <p class="card-text">@Model.Jackets[i].Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">@Model.Jackets[i].Brand</small>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-      
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="#">@item.Name</a>
+                </h4>
+                <h5>@item.Price kr</h5>
+                <p class="card-text">@item.Description</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">@item.Brand</small>
+            </div>
+        </div>
+    </div>}
 
+                @foreach (var item in Model.AllJackets.Take(3))
+                {
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="#">@item.Name</a>
+                </h4>
+                <h5>@item.Price kr</h5>
+                <p class="card-text">@item.Description</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">@item.Brand</small>
+            </div>
+        </div>
+    </div>            }
+                
 
             </div>
             <!-- /.row -->

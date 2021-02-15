@@ -39,7 +39,7 @@ namespace SecondHandWebShop.Pages
             if (UserName == "admin@admin.com" && Password == "admin")
             {
                 HttpContext.Session.SetString("username", UserName);
-                return RedirectToPage("/AdminView");
+                return RedirectToPage("/Admin/Index");
             }
             else
             {

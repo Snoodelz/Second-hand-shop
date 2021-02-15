@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecondHandWebShop", "SecondHandWebShop\SecondHandWebShop.csproj", "{785BD4A7-8EDD-4715-A69C-3B1739B261C3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFDataAccessLibrary", "EFDataAccessLibrary\EFDataAccessLibrary.csproj", "{0D52E326-86AA-4C3E-AFE2-60BDD1D33BEF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{785BD4A7-8EDD-4715-A69C-3B1739B261C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{785BD4A7-8EDD-4715-A69C-3B1739B261C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{785BD4A7-8EDD-4715-A69C-3B1739B261C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D52E326-86AA-4C3E-AFE2-60BDD1D33BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D52E326-86AA-4C3E-AFE2-60BDD1D33BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D52E326-86AA-4C3E-AFE2-60BDD1D33BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D52E326-86AA-4C3E-AFE2-60BDD1D33BEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

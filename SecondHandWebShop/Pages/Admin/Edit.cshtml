@@ -1,0 +1,91 @@
+﻿@page
+@model SecondHandWebShop.Pages.Admin.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="container">
+    <h3>Edit Product</h3>
+    <hr />
+    <br />
+    <form method="post">
+        <input asp-for="Clothing.Id" type="hidden" />
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Name"></label>
+                <input asp-for="Clothing.Name" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Category"></label>
+                <input asp-for="Clothing.Category" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Description"></label>
+                <input asp-for="Clothing.Description" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Price"></label>
+                <input asp-for="Clothing.Price" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Discount"></label>
+                <input asp-for="Clothing.Discount" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.ImageUrl"></label>
+                <input asp-for="Clothing.ImageUrl" cl class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Brand"></label>
+                <input asp-for="Clothing.Brand" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Color"></label>
+                <input asp-for="Clothing.Color" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <select id="selgender" asp-for="Clothing.Gender">
+                    <option selected disabled>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Unisex">Unisex</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Material"></label>
+                <input asp-for="Clothing.Material" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Size"></label>
+                <input asp-for="Clothing.Size" class="form-control" />
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="index">Cancel</a>
+    </form>
+</div>
+
