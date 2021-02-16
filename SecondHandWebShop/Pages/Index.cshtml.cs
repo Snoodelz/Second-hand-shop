@@ -28,7 +28,6 @@ namespace SecondHandWebShop.Pages
         public IEnumerable<Clothing> AllTrousers { get; set; }
         public IEnumerable<Clothing> ProductsOnDiscount { get; set; }
 
-
         public void OnGet()
         {
             AllClothing = _context.Clothing.ToList();
@@ -38,7 +37,18 @@ namespace SecondHandWebShop.Pages
             AllShirts = _context.Clothing.Where(c => c.Category == "Shirt").ToList();
             AllShoes = _context.Clothing.Where(c => c.Category == "Shoe").ToList();
             AllTrousers = _context.Clothing.Where(c => c.Category == "Trouser").ToList();
-            ProductsOnDiscount = _context.Clothing.Where(d => d.Discount != 0).ToList();
+            ProductsOnDiscount = _context.Clothing.Where(d => d.Discount > 0).ToList();
+
+            //var discountedPrice = clothing.Price - (clothing.Price * clothing.Discount / 100);
+
+            //var discount = _context.Clothing.Select(d => new { Discount = d.Price - (d.Price * d.Discount) / 100 });
+
+            //ProductsOnDiscount = discount;
+
+            //Clothing clothing = new Clothing();
+            //var disc = clothing.Price - (clothing.Price * clothing.Discount) / 100;
+            //clothing.Discount = disc;
+
         }
     }
 }

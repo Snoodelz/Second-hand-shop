@@ -13,6 +13,7 @@ namespace SecondHandWebShop.Models
         public string Description { get; set; }
         public decimal Price { get; set; }
         public decimal Discount { get; set; }
+        public decimal DiscountedPrice { get; set; }
         public DateTime Date { get; set; }
         public string ImageUrl { get; set; }
         public string Brand { get; set; }
@@ -25,5 +26,6 @@ namespace SecondHandWebShop.Models
         {
             Date = DateTime.Now;
         }
+
     }
 }
