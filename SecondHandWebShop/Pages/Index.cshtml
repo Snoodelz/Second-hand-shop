@@ -70,7 +70,8 @@
                             </div>
                         </div>
                     </div>}
-                <p class="text-center">Utvalda produkter</p>
+            </div>
+                <p class="text-center">Utvalda produkter</p><br />
                 <div class="row">
 
                     @foreach (var item in Model.AllJackets.Take(3))
@@ -90,7 +91,8 @@
                                 </div>
                             </div>
                         </div>}
-                    <p class="text-center">Nedsatt pris</p>
+                </div>
+                    <p class="text-center">Nedsatt pris</p><br />
                     <div class="row">
 
                         @foreach (var item in Model.ProductsOnDiscount.TakeLast(3))
@@ -116,8 +118,8 @@
                                 </div>
                             </div>}
                     </div>
-                </div>
-            </div>
+                @*</div>
+            </div>*@
                     <!-- /.row -->
 
                 </div>

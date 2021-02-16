@@ -45,7 +45,10 @@
         <div class="row">
             <div class="col-md-4">
                 <label asp-for="Clothing.Discount"></label>
+                <div class="input-group-append">
                 <input asp-for="Clothing.Discount" class="form-control" />
+                    <span class="input-group-text">%</span>
+                </div>
                 <span class="alert-danger" asp-validation-for="Clothing.Discount"></span>
             </div>
         </div>
@@ -73,9 +76,9 @@
         <div class="row">
             <div class="col-md-4">
 
-
-                <select id="selgender" asp-for="Clothing.Gender">
-                    <option selected disabled>Select gender</option>
+                <label asp-for="Clothing.Gender"></label>
+                <select class="form-control" id="selgender" asp-for="Clothing.Gender">
+                    <option selected disabled>-Select gender-</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Unisex">Unisex</option>
