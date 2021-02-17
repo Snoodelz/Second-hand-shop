@@ -32,8 +32,7 @@
                     <option value="Shirt">Shirt</option>
                     <option value="Trouser">Trouser</option>
                     <option value="Shoe">Shoe</option>
-
-
+                    <option value="Merchandise">Merchandise</option>
                 </select>
             </div>
         </div>
@@ -101,9 +100,14 @@
                 <input asp-for="Clothing.Size" class="form-control" />
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.StockBalance"></label>
+                <input asp-for="Clothing.StockBalance" class="form-control" />
+            </div>
+        </div>
         <br />
         <input type="submit" value="Save" class="btn btn-primary" />
         <a class="btn btn-default" href="index">Cancel</a>
     </form>
 </div>
-
