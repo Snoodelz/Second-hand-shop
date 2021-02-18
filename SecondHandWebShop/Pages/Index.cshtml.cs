@@ -27,10 +27,12 @@ namespace SecondHandWebShop.Pages
         public IEnumerable<Clothing> AllShoes { get; set; }
         public IEnumerable<Clothing> AllTrousers { get; set; }
         public IEnumerable<Clothing> ProductsOnDiscount { get; set; }
+        public IEnumerable<Clothing> Merchandise { get; set; }
+
 
         public void OnGet()
         {
-            AllClothing = _context.Clothing.ToList();
+            AllClothing = _context.Clothing.Where(c => c.Category != "Merchandise").ToList();
             AllHats = _context.Clothing.Where(c => c.Category == "Hat").ToList();
             AllJackets = _context.Clothing.Where(c => c.Category == "Jacket").ToList();
             AllJewelries = _context.Clothing.Where(c => c.Category == "Jewelry").ToList();
@@ -38,6 +40,7 @@ namespace SecondHandWebShop.Pages
             AllShoes = _context.Clothing.Where(c => c.Category == "Shoe").ToList();
             AllTrousers = _context.Clothing.Where(c => c.Category == "Trouser").ToList();
             ProductsOnDiscount = _context.Clothing.Where(d => d.Discount > 0).OrderBy(d => d.Date).ToList();
+            Merchandise = _context.Clothing.Where(c => c.Category == "Merchandise").ToList();
         }
     }
 }

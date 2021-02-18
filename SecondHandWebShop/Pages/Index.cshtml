@@ -74,7 +74,7 @@
                 <p class="text-center">Utvalda produkter</p><br />
                 <div class="row">
 
-                    @foreach (var item in Model.AllJackets.Take(3))
+                    @foreach (var item in Model.Merchandise.TakeLast(3))
                     {
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">

@@ -34,7 +34,7 @@ namespace SecondHandWebShop
             //});
             // End of HEAD from github
             services.AddRazorPages();
-
+            
             services.AddDbContext<ProductContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ProductContext")));
         }
