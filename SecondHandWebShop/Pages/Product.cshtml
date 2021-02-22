@@ -8,13 +8,23 @@
         <!-- /.col-lg-3 -->
 
         <div class="col-sm-12">
+            <a href="Catalog?Category=@Model.Product.Category" class="list-group-item">@Model.Product.Category</a>
             <div class="card mt-4">
-                <img class="card-img-top img-fluid" src="https://picsum.photos/900/400" alt="">
+                <img class="card-img-top img-fluid" src="@Model.Product.ImageUrl" alt="">
                 <div class="card-body">
-                    <h3 class="card-title">Rock</h3>
-                    <p class="card-text">En fin rock.</p>
+                    <h3 class="card-title">@Model.Product.Name</h3>
+                    <p class="card-text">@Model.Product.Description</p>
                     <a href="#" class="float-right btn btn-info">Köp</a>
-                    500 kr
+                    @if (Model.Product.Discount > 0)
+                    {
+                        Model.Product.DiscountedPrice = Model.Product.Price - (Model.Product.Price * Model.Product.Discount) / 100;
+                        <h5><s>@Math.Round(Model.Product.Price) kr</s> @Math.Round(Model.Product.DiscountedPrice) kr </h5>
+                        <p style="color:palevioletred">@Math.Round(Model.Product.Discount)% OFF</p>
+                    }
+                    else
+                    {
+                        <h5>@Model.Product.Price kr</h5>
+                    }
                 </div>
             </div>
             <!-- /.card -->
@@ -24,10 +34,15 @@
                     Info
                 </div>
                 <div class="card-body">
-                    <p>Storlek: L</p>
+                    <p>Storlek: @Model.Product.Size</p>
                     <hr />
-                    <p>Material: 100% Ull</p>
+                    <p>Material: @Model.Product.Material</p>
                 </div>
+                @if (Model.Product.StockBalance > 1)
+                {
+                    <hr />
+                    <p>Lagersaldo: @Model.Product.StockBalance</p>
+                }
             </div>
             <!-- /.card -->
 

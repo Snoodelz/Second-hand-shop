@@ -48,10 +48,10 @@
                 {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                            <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <a href="#">@item.Name</a>
+                                    <a href="Product?ID=@item.Id">@item.Name</a>
                                 </h4>
                                 @if (item.Discount > 0)
                                 {
@@ -74,14 +74,14 @@
                 <p class="text-center">Utvalda produkter</p><br />
                 <div class="row">
 
-                    @foreach (var item in Model.Merchandise.TakeLast(3))
+                    @foreach (var item in Model.AllJackets.TakeLast(3))
                     {
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a href="#">@item.Name</a>
+                                        <a href="Product?ID=@item.Id">@item.Name</a>
                                     </h4>
                                     @if (item.Discount > 0)
                                     {
@@ -111,10 +111,10 @@
                             }
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            <a href="#">@item.Name</a>
+                                            <a href="Product?ID=@item.Id">@item.Name</a>
                                         </h4>
                                         <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
                                         <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>

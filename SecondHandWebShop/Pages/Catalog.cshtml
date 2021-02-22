@@ -13,14 +13,14 @@
             <img src="img/logo.png">
             <div class="list-group">
                 <a href="Catalog?Category=all" class="list-group-item">Alla produkter</a>
-                <a href="Catalog?Category=merchandise" class="list-group-item">Merchandise</a>
-                <a href="Catalog?Category=hat" class="list-group-item">Hattar</a>
-                <a href="Catalog?Category=jacket" class="list-group-item">Jackor</a>
-                <a href="Catalog?Category=jewelry" class="list-group-item">Smycken</a>
-                <a href="Catalog?Category=shirt" class="list-group-item">Tröjor</a>
-                <a href="Catalog?Category=trouser" class="list-group-item">Byxor</a>
-                <a href="Catalog?Category=shoe" class="list-group-item">Skor</a>
-                <a href="Catalog?Category=discount" class="list-group-item">Rea</a>
+                <a href="Catalog?Category=Merchandise" class="list-group-item">Merchandise</a>
+                <a href="Catalog?Category=Hat" class="list-group-item">Hattar</a>
+                <a href="Catalog?Category=Jacket" class="list-group-item">Jackor</a>
+                <a href="Catalog?Category=Jewelry" class="list-group-item">Smycken</a>
+                <a href="Catalog?Category=Shirt" class="list-group-item">Tröjor</a>
+                <a href="Catalog?Category=Trouser" class="list-group-item">Byxor</a>
+                <a href="Catalog?Category=Shoe" class="list-group-item">Skor</a>
+                <a href="Catalog?Category=Discount" class="list-group-item">Rea</a>
             </div>
 
         </div>
@@ -36,10 +36,10 @@
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -58,15 +58,15 @@
                     </div>
                 </div>
             </div>} break;
-        case "merchandise":
+        case "Merchandise":
             @foreach (var item in Model.Merchandise)
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -85,15 +85,15 @@
                     </div>
                 </div>
             </div>} break;
-        case "hat":
+        case "Hat":
             @foreach (var item in Model.AllHats)
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -112,15 +112,15 @@
                     </div>
                 </div>
             </div>} break;
-        case "jacket":
+        case "Jacket":
             @foreach (var item in Model.AllJackets)
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -139,15 +139,15 @@
                     </div>
                 </div>
             </div>} break;
-        case "jewelry":
+        case "Jewelry":
             @foreach (var item in Model.AllJewelries)
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -166,15 +166,15 @@
                     </div>
                 </div>
             </div>}break;
-        case "shirt":
+        case "Shirt":
             @foreach (var item in Model.AllShirts)
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -193,15 +193,15 @@
                     </div>
                 </div>
             </div>}break;
-        case "trouser":
+        case "Trouser":
             @foreach (var item in Model.AllTrousers)
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -220,15 +220,15 @@
                     </div>
                 </div>
             </div>}break;
-        case "shoe":
+        case "Shoe":
             @foreach (var item in Model.AllShoes)
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -247,15 +247,15 @@
                     </div>
                 </div>
             </div>}break;
-        case "discount":
+        case "Discount":
             @foreach (var item in Model.ProductsOnDiscount)
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
@@ -280,10 +280,10 @@
             {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">@item.Name</a>
+                            <a href="Product?ID=@item.Id">@item.Name</a>
                         </h4>
                         @if (item.Discount > 0)
                         {
