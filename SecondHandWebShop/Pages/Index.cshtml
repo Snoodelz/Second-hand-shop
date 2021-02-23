@@ -7,14 +7,14 @@
 
     <div class="row">
 
-        <div class="col-lg-3">
+        <div class="col-lg-2">
 
-            <img src="img/logo.png">
+            <img class="rounded mx-auto d-block" src="img/logo.png">
 
         </div>
         <!-- /.col-lg-3 -->
 
-        <div class="col-lg-9">
+        <div class="col-lg-10">
 
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -42,7 +42,7 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-            <p class="text-center">Senast tillagda</p>
+            <p class="text-center first-page">Senast tillagda</p>
             <div class="row">
                 @foreach (var item in Model.AllClothing.TakeLast(3))
                 {
@@ -71,7 +71,7 @@
                         </div>
                     </div>}
             </div>
-                <p class="text-center">Utvalda produkter</p><br />
+                <p class="text-center first-page">Utvalda produkter</p>
                 <div class="row">
 
                     @foreach (var item in Model.AllJackets.TakeLast(3))
@@ -101,7 +101,7 @@
                             </div>
                         </div>}
                 </div>
-                    <p class="text-center">Nedsatt pris</p><br />
+                    <p class="text-center first-page">Nedsatt pris</p>
                     <div class="row">
 
                         @foreach (var item in Model.ProductsOnDiscount.TakeLast(3))

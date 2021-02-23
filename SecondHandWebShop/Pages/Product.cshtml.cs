@@ -24,7 +24,15 @@ namespace SecondHandWebShop.Pages
         public Clothing Product { get; set; }
         public void OnGet()
         {
-            Product = _context.Clothing.First(c => c.Id == ID);
+            if(ID == 0)
+            {
+                Product = _context.Clothing.First(c => c.Id == 1);
+            }
+            else
+            {
+                Product = _context.Clothing.First(c => c.Id == ID);
+            }
+
         }
     }
 }

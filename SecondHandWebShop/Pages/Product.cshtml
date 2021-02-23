@@ -6,47 +6,67 @@
 
     <div class="row">
         <!-- /.col-lg-3 -->
-
-        <div class="col-sm-12">
-            <a href="Catalog?Category=@Model.Product.Category" class="list-group-item">@Model.Product.Category</a>
+        <div class="col-lg-1">
+            <hr />  
+            <a href="Catalog?Category=@Model.Product.Category">@Model.Product.Category</a>
+        </div>
+        <div class="col-lg-7">
             <div class="card mt-4">
                 <img class="card-img-top img-fluid" src="@Model.Product.ImageUrl" alt="">
-                <div class="card-body">
-                    <h3 class="card-title">@Model.Product.Name</h3>
-                    <p class="card-text">@Model.Product.Description</p>
-                    <a href="#" class="float-right btn btn-info">Köp</a>
-                    @if (Model.Product.Discount > 0)
-                    {
-                        Model.Product.DiscountedPrice = Model.Product.Price - (Model.Product.Price * Model.Product.Discount) / 100;
-                        <h5><s>@Math.Round(Model.Product.Price) kr</s> @Math.Round(Model.Product.DiscountedPrice) kr </h5>
-                        <p style="color:palevioletred">@Math.Round(Model.Product.Discount)% OFF</p>
-                    }
-                    else
-                    {
-                        <h5>@Math.Round(Model.Product.Price) kr</h5>
-                    }
-                </div>
-            </div>
+               
             <!-- /.card -->
 
-            <div class="card card-outline-secondary my-4">
+            <!-- /.card -->
+                </div>
+
+        </div>
+        <col-lg-4>
+            <div class="card-body">
+                <h3 class="card-title">@Model.Product.Name</h3>
+                <p class="card-text">@Model.Product.Description</p>
+
+                @if (Model.Product.Discount > 0)
+                {
+                    Model.Product.DiscountedPrice = Model.Product.Price - (Model.Product.Price * Model.Product.Discount) / 100;
+                    <h5><s>@Math.Round(Model.Product.Price) kr</s> @Math.Round(Model.Product.DiscountedPrice) kr </h5>
+                    <p style="color:palevioletred">@Math.Round(Model.Product.Discount)% OFF</p>
+                }
+                else
+                {
+                    <h5>@Math.Round(Model.Product.Price) kr</h5>
+                }
+                <br />
+                @if (Model.Product.StockBalance > 0)
+                {
+                    <a href="#" class="btn btn-success btn-lg btn-block">Lägg till i varukorgen</a>
+                }
+                else
+                {
+                    <a href="#" class="btn btn-danger btn-lg btn-block disabled">Tillfälligt slut</a>
+                }
+            <br />
+            <div class="card">
                 <div class="card-header">
-                    Info
+                    Produkt information
                 </div>
                 <div class="card-body">
                     <p>Storlek: @Model.Product.Size</p>
                     <hr />
                     <p>Material: @Model.Product.Material</p>
-                </div>
-                @if (Model.Product.StockBalance > 1)
-                {
+                    @if (Model.Product.StockBalance > 1)
+                    {
+                        <hr />
+                        <p>Lagersaldo: @Model.Product.StockBalance</p>
+                    }
                     <hr />
-                    <p>Lagersaldo: @Model.Product.StockBalance</p>
-                }
-            </div>
-            <!-- /.card -->
+                    <p>Märke: @Model.Product.Brand</p>
+                </div>
 
-        </div>
+            </div>
+                
+            </div>
+
+        </col-lg-4>
         <!-- /.col-lg-9 -->
 
     </div>
