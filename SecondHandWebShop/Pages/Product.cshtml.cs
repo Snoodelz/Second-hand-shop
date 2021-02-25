@@ -1,4 +1,5 @@
 using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,9 +23,12 @@ namespace SecondHandWebShop.Pages
         public int ID { get; set; }
 
         public Clothing Product { get; set; }
+        public string url;
         public void OnGet()
         {
-            if(ID == 0)
+            
+
+            if (ID == 0)
             {
                 Product = _context.Clothing.First(c => c.Id == 1);
             }
