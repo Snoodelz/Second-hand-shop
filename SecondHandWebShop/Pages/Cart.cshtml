@@ -3,14 +3,11 @@
 @using SecondHandWebShop.Helpers;
 @{
 }
-
+<br />
+<p class="text-center first-page">Varukorg</p>
 <section>
 
-    <div class="col-lg-3">
 
-        <img src="img/logo.png">
-
-    </div>
     <!--Grid row-->
     <div class="row">
 
@@ -28,7 +25,16 @@
                     }
                     else
                     {
+                        if (Model.cart.Sum(x => x.Quantity) == 1)
+                        {
+                            <h5 class="mb-4">Cart (<span>@Model.cart.Sum(x => x.Quantity).ToString()</span> item)</h5>
+
+                        }
+                        else
+                        {
                         <h5 class="mb-4">Cart (<span>@Model.cart.Sum(x => x.Quantity).ToString()</span> items)</h5>
+
+                        }
 
                         foreach (var item in Model.cart)
                         {
@@ -59,11 +65,12 @@
                                                                 class="minus btn-secondary">
                                                             -
                                                         </button>
-                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                                        <input class="quantity" min="1" max="@item.Clothes.StockBalance" name="quantity" value="1" type="number">
                                                         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                                                                 class="plus btn-secondary">
                                                             +
                                                         </button>
+
                                                     }
 
                                                 </div>
@@ -78,7 +85,7 @@
                                             @if (item.Clothes.Discount > 0)
                                             {
                                                 item.Clothes.DiscountedPrice = item.Clothes.Price - (item.Clothes.Price * item.Clothes.Discount) / 100;
-                                                <p class="mb-0"><span><strong><s>@Math.Round(item.Clothes.Price) SEK</s> <br /> @Math.Round(item.Clothes.DiscountedPrice) SEK</strong></span></p>
+                                                <p class="mb-0"><span><strong><s>@Math.Round(item.Clothes.Price) SEK</s> <br /> <span style="color:palevioletred">@Math.Round(item.Clothes.DiscountedPrice) SEK</span></strong></span></p>
                                             }
                                             else
                                             {
