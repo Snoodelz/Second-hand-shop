@@ -163,7 +163,8 @@
                             </li>
                         </ul>
                     }
-                    <button type="button" class="btn btn-secondary btn-block waves-effect waves-light">Checkout</button>
+                    @*<button type="button" class="btn btn-secondary btn-block waves-effect waves-light">Checkout</button>*@
+                    <a asp-page="CheckOut" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-secondary btn-lg btn-block">Checkout</a>
                 </div>
             </div>
             <!-- Card -->
