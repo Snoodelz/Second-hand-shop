@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SecondHandWebShop.Data;
 using SecondHandWebShop.Models;
+using Newtonsoft.Json;
 
 namespace SecondHandWebShop.Pages
 {
@@ -37,6 +38,22 @@ namespace SecondHandWebShop.Pages
                 Product = _context.Clothing.First(c => c.Id == ID);
             }
 
+        }
+        public bool AlreadyInCart()
+        {
+            var cartItems = CartModel.CartItems;
+
+            if(cartItems != null)
+            {
+                foreach (var item in cartItems)
+                {
+                    if(item.Clothes.Id == Product.Id)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

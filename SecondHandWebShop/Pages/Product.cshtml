@@ -31,9 +31,13 @@
                     <h5>@Math.Round(Model.Product.Price) kr</h5>
                 }
                 <br />
-                @if (Model.Product.StockBalance > 0)
+                @if (Model.AlreadyInCart() && Model.Product.Category != "Merchandise")
                 {
-            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-success btn-lg btn-block">Lägg till i varukorgen</a>
+                    <a class="btn btn-outline-success btn-lg btn-block disabled">Redan i varukorgen</a>
+                }
+                else if (Model.Product.StockBalance > 0)
+                {
+                    <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-success btn-lg btn-block">Lägg till i varukorgen</a>
                 }
                 else
                 {

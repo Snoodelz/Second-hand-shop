@@ -67,6 +67,10 @@
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">@item.Brand</small>
+                                @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                {
+                                    <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                }
                             </div>
                         </div>
                     </div>}
@@ -97,6 +101,10 @@
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-muted">@item.Brand</small>
+                                    @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                    {
+                                        <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                    }
                                 </div>
                             </div>
                         </div>}
@@ -123,6 +131,10 @@
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-muted">@item.Brand</small>
+                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                        {
+                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                        }
                                     </div>
                                 </div>
                             </div>}

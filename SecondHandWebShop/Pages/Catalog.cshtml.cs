@@ -43,5 +43,21 @@ namespace SecondHandWebShop.Pages
             AllTrousers = _context.Clothing.Where(c => c.Category == "Trouser").ToList();
             ProductsOnDiscount = _context.Clothing.Where(d => d.Discount != 0).ToList();
         }
+        public static bool AlreadyInCart(Clothing product)
+        {
+            var cartItems = CartModel.CartItems;
+
+            if (cartItems != null)
+            {
+                foreach (var item in cartItems)
+                {
+                    if (item.Clothes.Id == product.Id)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
