@@ -38,7 +38,6 @@
 
                         foreach (var item in Model.cart)
                         {
-
                             <div class="row mb-4">
                                 <div class="col-md-5 col-lg-3 col-xl-3">
                                     <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
@@ -70,7 +69,6 @@
                                                                 class="plus btn-secondary">
                                                             +
                                                         </button>
-
                                                     }
 
                                                 </div>
@@ -85,11 +83,27 @@
                                             @if (item.Clothes.Discount > 0)
                                             {
                                                 item.Clothes.DiscountedPrice = item.Clothes.Price - (item.Clothes.Price * item.Clothes.Discount) / 100;
+                                                if (item.Quantity > 1)
+                                                {
+                                                    <p class="mb-0"><span><strong><s>@Math.Round(item.Clothes.Price)</s> <span style="color:palevioletred">@Math.Round(item.Clothes.DiscountedPrice)</span> * @item.Quantity <br /> <span style="color:palevioletred">@Math.Round(item.Clothes.DiscountedPrice * item.Quantity) SEK</span></strong></span></p>
+
+                                                }
+                                                else
+                                                {
                                                 <p class="mb-0"><span><strong><s>@Math.Round(item.Clothes.Price) SEK</s> <br /> <span style="color:palevioletred">@Math.Round(item.Clothes.DiscountedPrice) SEK</span></strong></span></p>
+                                                }
                                             }
                                             else
                                             {
-                                                <p class="mb-0"><span><strong>@Math.Round(item.Clothes.Price) SEK </strong></span></p>
+                                                if (item.Quantity > 1)
+                                                {
+                                                    <p class="mb-0"><span><strong>@Math.Round(item.Clothes.Price) * @item.Quantity <br /> @Math.Round(item.Clothes.Price * item.Quantity) SEK</strong></span></p>
+
+                                                }
+                                                else
+                                                {
+                                                    <p class="mb-0"><span><strong>@Math.Round(item.Clothes.Price) SEK </strong></span></p>
+                                                }
 
                                             }
 
@@ -141,7 +155,6 @@
                             {
                                 item.Clothes.Price = item.Clothes.DiscountedPrice;
                             }
-
                         }
                         Model.Total = Model.cart.Sum(item => item.Clothes.Price * item.Quantity);
 

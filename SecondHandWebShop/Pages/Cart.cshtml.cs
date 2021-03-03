@@ -26,19 +26,18 @@ namespace SecondHandWebShop.Pages
         public Clothing Product { get; set; }
         public IEnumerable<Clothing> Merchandise { get; set; }
         public IEnumerable<Clothing> ProductsOnDiscount { get; set; }
-        
-        [NotNull]
         public List<Item> cart { get; set; }
+        public static List<Item> CartItems { get; set; }
         public decimal Total { get; set; }
         public void OnGet()
         {
-
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
 
             ProductsOnDiscount = _context.Clothing.Where(d => d.Discount > 0).ToList();
 
             Merchandise = _context.Clothing.Where(c => c.Category == "Merchandise").ToList();
 
+            CartItems = cart;
 
         }
 
@@ -50,6 +49,7 @@ namespace SecondHandWebShop.Pages
 
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+
             return RedirectToPage("Cart");
         }
 
@@ -80,11 +80,11 @@ namespace SecondHandWebShop.Pages
                 }
                 else
                 {
-                    var newQuantity = cart[index].Quantity + 1;
-                    cart[index].Quantity = newQuantity;
+                    cart[index].Quantity++;
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
+
             return RedirectToPage("Cart");
         }
 
