@@ -37,18 +37,82 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-page="/Login">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/Cart">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" id="dropdowncart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @*asp-page="/Cart"*@>
                                 <img src="img/shopping-bag.png" alt="shoppingbasket" style="width:30px;height:30px" />
-                               @if (CartModel.CartItems != null)
-                               {
-                                @CartModel.CartItems.Sum(x => x.Quantity)
-                               }
-                               else
-                               {
-                                   <span>0</span>
-                               }
+                                @if (CartModel.CartItems != null)
+                                {
+                                    @CartModel.CartItems.Sum(x => x.Quantity)
+                                }
+                                else
+                                {
+                                    <span>0</span>
+                                }
                             </a>
+                            <ul class="mb-3 dropdown-menu dropdown-menu-right" aria-labelledby="dropdowncart" style="min-width:300px">
+                                @if (CartModel.CartItems != null)
+                                {
+                                    @foreach (var item in CartModel.CartItems)
+                                    {
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <div style="float:left">
+                                        <h6 class="my-0">@item.Clothes.Name</h6>
+                                        <br />
+                                        <img src="@item.Clothes.ImageUrl" alt="itemimage" style="width:65px;height:65px;padding-right:10px" />
+                                    </div>
+                                    @if (item.Clothes.Discount > 0)
+                                    {
+                                        if (item.Quantity > 1)
+                                        {
+                                            <span class="text-muted">@Math.Round(item.Clothes.DiscountedPrice) * @item.Quantity <br /> @Math.Round(item.Clothes.DiscountedPrice * item.Quantity) SEK</span>
+
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">@Math.Round(item.Clothes.DiscountedPrice) SEK</span>
+                                        }
+                                        
+                                    }
+                                    else
+                                    {
+                                        if (item.Quantity > 1)
+                                        {
+                                            <span class="text-muted">@Math.Round(item.Clothes.Price) * @item.Quantity <br /> @Math.Round(item.Clothes.Price * item.Quantity) SEK</span>
+
+                                        }
+                                        else
+                                        {
+
+                                            <span class="text-muted">@Math.Round(item.Clothes.Price) SEK</span>
+                                        }
+
+                                    }
+                                </li>
+
+                                    }
+                                    var total = CartModel.CartItems.Sum(x => x.Clothes.Price * x.Quantity);
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Total (SEK)</span>
+
+                                        <strong>@Math.Round(total)</strong>
+
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Total (SEK)</span>
+
+                                        <strong>0</strong>
+
+                                    </li>
+                                }
+                                <li class="justify-content-between" style="text-align:center">
+                                    <br />
+                                    <a class="btn btn-outline-secondary text-center" asp-page="/Cart">Till varukorgen</a>
+                                </li>
+
+                            </ul>
                         </li>
                     </ul>
                 </div>
