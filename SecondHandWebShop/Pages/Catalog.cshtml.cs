@@ -45,7 +45,7 @@ namespace SecondHandWebShop.Pages
         }
         public static bool AlreadyInCart(Clothing product)
         {
-            var cartItems = CartModel.CartItems;
+            var cartItems = CartModel.cart;
 
             if (cartItems != null)
             {

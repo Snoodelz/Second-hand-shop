@@ -26,24 +26,20 @@ namespace SecondHandWebShop.Pages
         public Clothing Product { get; set; }
         public IEnumerable<Clothing> Merchandise { get; set; }
         public IEnumerable<Clothing> ProductsOnDiscount { get; set; }
-        public List<Item> cart { get; set; }
-        public static List<Item> CartItems { get; set; }
+        public static List<Item> cart { get; set; }
         public decimal Total { get; set; }
+
         public void OnGet()
         {
-            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
 
             ProductsOnDiscount = _context.Clothing.Where(d => d.Discount > 0).ToList();
 
             Merchandise = _context.Clothing.Where(c => c.Category == "Merchandise").ToList();
 
-            CartItems = cart;
-
         }
 
         public IActionResult OnGetDelete(string id)
         {
-            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             var product = _context.Clothing.Find(Convert.ToInt32(id));
             var index = Exists(cart, id);
 
@@ -56,7 +52,6 @@ namespace SecondHandWebShop.Pages
         public IActionResult OnGetBuy(string id)
         {
             var product = _context.Clothing.Find(Convert.ToInt32(id));
-            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             if (cart == null)
             {
                 cart = new List<Item>();

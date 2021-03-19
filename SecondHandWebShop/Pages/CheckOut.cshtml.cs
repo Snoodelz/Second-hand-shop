@@ -10,13 +10,11 @@ namespace SecondHandWebShop.Pages
 {
     public class CheckOutModel : PageModel
     {
-        public List<Item> cart { get; set; }
         public decimal Total { get; set; }
 
         public void OnGet()
         {
-            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
- 
+            
         }
     }
 }
