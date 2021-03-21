@@ -27,7 +27,8 @@ namespace SecondHandWebShop
         {
             // Removed merge conflict HEAD from github
             services.AddSession();
-            services.AddMvc();
+
+            services.AddMvc(option => option.EnableEndpointRouting = false);
             //services.AddDbContext<ProductContext>(options =>
             //{
             //    options.UseSqlServer(Configuration.GetConnectionString("Default"));
@@ -58,7 +59,7 @@ namespace SecondHandWebShop
 
             app.UseRouting();
 
-            
+            app.UseMvc();
 
             app.UseAuthorization();
 
