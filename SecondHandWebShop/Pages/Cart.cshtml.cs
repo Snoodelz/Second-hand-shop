@@ -31,6 +31,7 @@ namespace SecondHandWebShop.Pages
 
         public void OnGet()
         {
+            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
 
             ProductsOnDiscount = _context.Clothing.Where(d => d.Discount > 0).ToList();
 
@@ -41,6 +42,7 @@ namespace SecondHandWebShop.Pages
         public IActionResult OnGetDelete(string id)
         {
             var product = _context.Clothing.Find(Convert.ToInt32(id));
+            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             var index = Exists(cart, id);
 
             cart.RemoveAt(index);
@@ -52,6 +54,7 @@ namespace SecondHandWebShop.Pages
         public IActionResult OnGetBuy(string id)
         {
             var product = _context.Clothing.Find(Convert.ToInt32(id));
+            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             if (cart == null)
             {
                 cart = new List<Item>();
