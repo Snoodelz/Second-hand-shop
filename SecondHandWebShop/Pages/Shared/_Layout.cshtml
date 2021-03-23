@@ -39,7 +39,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" id="dropdowncart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @*asp-page="/Cart"*@>
-                                <img src="img/shopping-bag.png" alt="shoppingbasket" style="width:30px;height:30px" />
+                                <img src="/img/shopping-bag.png" alt="shoppingbasket" style="width:30px;height:30px" />
                                 @if (CartModel.cart != null)
                                 {
                                     @CartModel.cart.Sum(x => x.Quantity)

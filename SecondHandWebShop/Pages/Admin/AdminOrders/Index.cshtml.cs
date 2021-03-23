@@ -21,6 +21,19 @@ namespace SecondHandWebShop.Pages.Admin.AdminOrders
 
         public IList<Order> Order { get;set; }
 
+        public ActionResult OnGetDelete(int? id)
+        {
+            if (id != null)
+            {
+                var data = (from Order in _context.Order
+                            where Order.OrderId == id
+                            select Order).SingleOrDefault();
+
+                _context.Remove(data);
+                _context.SaveChanges();
+            }
+            return RedirectToPage("Index");
+        }
         public async Task OnGetAsync()
         {
             Order = await _context.Order.ToListAsync();

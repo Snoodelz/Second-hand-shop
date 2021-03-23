@@ -37,7 +37,7 @@
                 }
                 else if (Model.Product.StockBalance > 0)
                 {
-                    <a asp-page="?Cart" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-success btn-lg btn-block">Lägg till i varukorgen</a>
+                    <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-success btn-lg btn-block">Lägg till i varukorgen</a>
                 }
                 else
                 {
