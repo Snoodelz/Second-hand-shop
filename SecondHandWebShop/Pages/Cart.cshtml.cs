@@ -97,5 +97,20 @@ namespace SecondHandWebShop.Pages
             }
             return -1;
         }
+
+        public IActionResult OnPostUpdate(int[] quantity)
+        {
+            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+
+            for (var i = 0; i < cart.Count; i++)
+            {
+                if (cart[i].Clothes.Category == "Merchandise")
+                {
+                    cart[i].Quantity = quantity[i];
+                }
+            }
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return RedirectToPage("Cart");
+        }
     }
 }
