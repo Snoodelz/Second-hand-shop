@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SecondHandWebShop.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace SecondHandWebShop
 {
@@ -35,6 +36,13 @@ namespace SecondHandWebShop
             //});
             // End of HEAD from github
             services.AddRazorPages();
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+                // ge alltid värde till dessa två värden. minimum.
+            });
             
             services.AddDbContext<ProductContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ProductContext")));
@@ -56,12 +64,14 @@ namespace SecondHandWebShop
             app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
             app.UseMvc();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

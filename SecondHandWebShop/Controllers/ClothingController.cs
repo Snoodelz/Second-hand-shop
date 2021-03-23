@@ -25,14 +25,10 @@ namespace SecondHandWebShop.Controllers
             _context = context;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Clothing>>> GetClothing()
         {
             return await _context.Clothing.ToListAsync();
-            
-
-
         }
 
         [HttpGet("{id}")]
