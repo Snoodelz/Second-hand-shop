@@ -15,5 +15,7 @@ namespace SecondHandWebShop.Data
         }
 
         public DbSet<SecondHandWebShop.Models.Clothing> Clothing { get; set; }
+
+        public DbSet<SecondHandWebShop.Models.Order> Order { get; set; }
     }
 }
