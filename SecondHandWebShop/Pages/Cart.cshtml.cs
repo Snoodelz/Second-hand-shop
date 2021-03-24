@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SecondHandWebShop.Data;
 using SecondHandWebShop.Helpers;
 using SecondHandWebShop.Models;
-using SecondHandWebShop.Pages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SecondHandWebShop.Pages
 {
@@ -37,11 +34,12 @@ namespace SecondHandWebShop.Pages
 
             Merchandise = _context.Clothing.Where(c => c.Category == "Merchandise").ToList();
 
+
         }
 
         public IActionResult OnGetDelete(string id)
         {
-            var product = _context.Clothing.Find(Convert.ToInt32(id));
+            Product = _context.Clothing.Find(Convert.ToInt32(id));
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             var index = Exists(cart, id);
 
@@ -53,14 +51,14 @@ namespace SecondHandWebShop.Pages
 
         public IActionResult OnGetBuy(string id)
         {
-            var product = _context.Clothing.Find(Convert.ToInt32(id));
+            Product = _context.Clothing.Find(Convert.ToInt32(id));
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             if (cart == null)
             {
                 cart = new List<Item>();
                 cart.Add(new Item()
                 {
-                    Clothes = product,
+                    Clothes = Product,
                     Quantity = 1
                 });
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
@@ -72,17 +70,49 @@ namespace SecondHandWebShop.Pages
                 {
                     cart.Add(new Item()
                     {
-                        Clothes = product,
+                        Clothes = Product,
                         Quantity = 1
                     });
                 }
                 else
                 {
-                    cart[index].Quantity++;
+                    for (int i = 0; i < cart.Count; i++)
+                    {
+                        if (cart[i].Clothes.Category == "Merchandise")
+                        {
+                            cart[index].Quantity++;
+                        }
+                    }
                 }
+                _context.Clothing.Update(Product);
+                _context.SaveChangesAsync();
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
 
+            return RedirectToPage("Cart");
+        }
+
+        public IActionResult OnPostUpdate(int quantity, string id)
+        {
+            Product = _context.Clothing.Find(Convert.ToInt32(id));
+            var index = Exists(cart, id);
+            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+
+                cart.ToList().ForEach(x => {
+                    if (x.Clothes.Category == "Merchandise")
+                    {
+                    x.Quantity = quantity;
+                    }
+                });
+
+            //for (var i = 0; i < cart.Count; i++)
+            //{
+            //        if (cart[i].Clothes.Category == "Merchandise")
+            //        {
+            //            cart[i].Quantity = quantity;
+            //        }
+            //}
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             return RedirectToPage("Cart");
         }
 
@@ -98,19 +128,5 @@ namespace SecondHandWebShop.Pages
             return -1;
         }
 
-        public IActionResult OnPostUpdate(int[] quantity)
-        {
-            cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-
-            for (var i = 0; i < cart.Count; i++)
-            {
-                if (cart[i].Clothes.Category == "Merchandise")
-                {
-                    cart[i].Quantity = quantity[i];
-                }
-            }
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
-            return RedirectToPage("Cart");
-        }
     }
 }

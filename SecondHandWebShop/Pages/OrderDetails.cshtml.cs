@@ -19,6 +19,7 @@ namespace SecondHandWebShop.Pages
         }
         [BindProperty]
         public Order Order { get; set; }
+        public Clothing Clothing { get; set; }
         public decimal Total { get; set; }
 
 
@@ -33,6 +34,7 @@ namespace SecondHandWebShop.Pages
 
             Total = CartModel.cart.Sum(item => item.Clothes.Price * item.Quantity);
 
+
             Order.OrderTotal = Total;
 
             List<string> OrderItems = new List<string>();
@@ -44,6 +46,22 @@ namespace SecondHandWebShop.Pages
 
             var result = string.Join(",", OrderItems);
             Order.OrderItems = result;
+
+            foreach (var item in CartModel.cart)
+            {
+                if (item.Clothes.Category == "Merchandise")
+                {
+                    for (int i = 0; i < item.Quantity; i++)
+                    {
+                        item.Clothes.StockBalance--;
+                    }
+                }
+                else
+                {
+                    item.Clothes.StockBalance--;
+                }
+                _context.Clothing.Update(item.Clothes);
+            }
 
             _context.Order.Update(Order);
             await _context.SaveChangesAsync();

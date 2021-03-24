@@ -58,6 +58,7 @@
 
                                             <div>
                                                 <div class="def-number-input number-input safari_only mb-0 w-100">
+
                                                     @if (item.Clothes.Category == "Merchandise" && item.Clothes.StockBalance > 1)
                                                     {
                                                         <form method="post" asp-page="cart" asp-page-handler="update">
@@ -70,6 +71,7 @@
                                                             </button>
                                                         </form>
                                                     }
+                                                    
 
                                                 </div>
                                             </div>
