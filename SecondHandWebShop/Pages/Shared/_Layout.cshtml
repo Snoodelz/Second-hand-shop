@@ -39,7 +39,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" id="dropdowncart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @*asp-page="/Cart"*@>
-                                <img src="img/shopping-bag.png" alt="shoppingbasket" style="width:30px;height:30px" />
+                                <img src="/img/shopping-bag.png" alt="shoppingbasket" style="width:30px;height:30px" />
                                 @if (CartModel.cart != null)
                                 {
                                     @CartModel.cart.Sum(x => x.Quantity)
@@ -54,40 +54,40 @@
                                 {
                                     @foreach (var item in CartModel.cart)
                                     {
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div style="float:left">
-                                        <h6 class="my-0">@item.Clothes.Name</h6>
-                                        <br />
-                                        <img src="@item.Clothes.ImageUrl" alt="itemimage" style="width:65px;height:65px;padding-right:10px" />
-                                    </div>
-                                    @if (item.Clothes.Discount > 0)
-                                    {
-                                        if (item.Quantity > 1)
-                                        {
-                                            <span class="text-muted">@Math.Round(item.Clothes.DiscountedPrice) * @item.Quantity <br /> @Math.Round(item.Clothes.DiscountedPrice * item.Quantity) SEK</span>
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div style="float:left">
+                                                <h6 class="my-0">@item.Clothes.Name</h6>
+                                                <br />
+                                                <img src="@item.Clothes.ImageUrl" alt="itemimage" style="width:65px;height:65px;padding-right:10px" />
+                                            </div>
+                                            @if (item.Clothes.Discount > 0)
+                                            {
+                                                if (item.Quantity > 1)
+                                                {
+                                                    <span class="text-muted">@Math.Round(item.Clothes.DiscountedPrice) * @item.Quantity <br /> @Math.Round(item.Clothes.DiscountedPrice * item.Quantity) SEK</span>
 
-                                        }
-                                        else
-                                        {
-                                            <span class="text-muted">@Math.Round(item.Clothes.DiscountedPrice) SEK</span>
-                                        }
-                                        
-                                    }
-                                    else
-                                    {
-                                        if (item.Quantity > 1)
-                                        {
-                                            <span class="text-muted">@Math.Round(item.Clothes.Price) * @item.Quantity <br /> @Math.Round(item.Clothes.Price * item.Quantity) SEK</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">@Math.Round(item.Clothes.DiscountedPrice) SEK</span>
+                                                }
 
-                                        }
-                                        else
-                                        {
+                                            }
+                                            else
+                                            {
+                                                if (item.Quantity > 1)
+                                                {
+                                                    <span class="text-muted">@Math.Round(item.Clothes.Price) * @item.Quantity <br /> @Math.Round(item.Clothes.Price * item.Quantity) SEK</span>
 
-                                            <span class="text-muted">@Math.Round(item.Clothes.Price) SEK</span>
-                                        }
+                                                }
+                                                else
+                                                {
 
-                                    }
-                                </li>
+                                                    <span class="text-muted">@Math.Round(item.Clothes.Price) SEK</span>
+                                                }
+
+                                            }
+                                        </li>
 
                                     }
                                     var total = CartModel.cart.Sum(x => x.Clothes.Price * x.Quantity);
@@ -122,6 +122,7 @@
         <!-- Navbar End -->
     </header>
     <div class="container">
+        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3  min-vh-100">
             @RenderBody()
         </main>
@@ -129,6 +130,7 @@
 
     <footer class="py-5 bg-dark">
         <div class="container">
+            
             <p class="m-0 text-center text-white">Copyright &copy; Quality Oddities 2021</p>
         </div>
         <!-- /.container -->

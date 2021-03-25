@@ -37,11 +37,18 @@
                 }
                 else if (Model.Product.StockBalance > 0)
                 {
-                    <a asp-page="?Cart" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-success btn-lg btn-block">Lägg till i varukorgen</a>
+                    <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-success btn-lg btn-block">Lägg till i varukorgen</a>
                 }
-                else
+                else if (Model.Product.StockBalance == 0)
                 {
-                    <a href="#" class="btn btn-danger btn-lg btn-block disabled">Tillfälligt slut</a>
+                    if (Model.Product.Category == "Merchandise")
+                    {
+                        <a href="#" class="btn btn-danger btn-lg btn-block disabled">Tillfälligt slut</a>
+                    }
+                    else
+                    {
+                        <a href="#" class="btn btn-danger btn-lg btn-block disabled">Slutsåld</a>
+                    }
                 }
                 <br />
                 <div class="card">

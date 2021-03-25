@@ -58,18 +58,20 @@
 
                                             <div>
                                                 <div class="def-number-input number-input safari_only mb-0 w-100">
+
                                                     @if (item.Clothes.Category == "Merchandise" && item.Clothes.StockBalance > 1)
                                                     {
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                                                class="minus btn-secondary">
-                                                            -
-                                                        </button>
-                                                        <input class="quantity" min="1" max="@item.Clothes.StockBalance" name="quantity" value="1" type="number">
-                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                                class="plus btn-secondary">
-                                                            +
-                                                        </button>
+                                                        <form method="post" asp-page="cart" asp-page-handler="update">
+                                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();" type="submit" value="Update" class="minus btn-secondary">
+                                                                -
+                                                            </button>
+                                                            <input type="number" min="1" max="@item.Clothes.StockBalance" name="quantity" value="@item.Quantity">
+                                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();" type="submit" value="Update" class="plus btn-secondary">
+                                                                +
+                                                            </button>
+                                                        </form>
                                                     }
+                                                    
 
                                                 </div>
                                             </div>
@@ -177,7 +179,16 @@
                         </ul>
                     }
                     @*<button type="button" class="btn btn-secondary btn-block waves-effect waves-light">Checkout</button>*@
-                    <a asp-page="CheckOut" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-secondary btn-lg btn-block">Checkout</a>
+                    @if (CartModel.cart == null)
+                    {
+                        <a asp-page="CheckOut" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-secondary btn-lg btn-block disabled">Checkout</a>
+
+                    }
+                    else
+                    {
+                        <a asp-page="CheckOut" asp-page-handler="buy" asp-route-id="@Model.ID" class="btn btn-secondary btn-lg btn-block">Checkout</a>
+
+                    }
                 </div>
             </div>
             <!-- Card -->

@@ -44,8 +44,9 @@
             </div>
             <p class="text-center first-page">Senast tillagda</p>
             <div class="row">
-                @foreach (var item in Model.AllClothing.TakeLast(3))
+                @foreach (var item in Model.AllClothing.Where(x => x.StockBalance > 0).TakeLast(3))
                 {
+                 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
@@ -74,11 +75,12 @@
                             </div>
                         </div>
                     </div>}
+                    
             </div>
                 <p class="text-center first-page">Utvalda produkter</p>
                 <div class="row">
 
-                    @foreach (var item in Model.AllJackets.TakeLast(3))
+                    @foreach (var item in Model.Merchandise.TakeLast(3))
                     {
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">
@@ -112,7 +114,7 @@
                     <p class="text-center first-page">Nedsatt pris</p>
                     <div class="row">
 
-                        @foreach (var item in Model.ProductsOnDiscount.TakeLast(3))
+                        @foreach (var item in Model.ProductsOnDiscount.Where(x => x.StockBalance > 0).TakeLast(3))
                         {
                             {
                                 item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
