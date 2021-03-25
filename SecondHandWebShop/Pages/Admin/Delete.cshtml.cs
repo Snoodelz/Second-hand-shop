@@ -49,6 +49,11 @@ namespace SecondHandWebShop.Pages.Admin
 
             if (Clothing != null)
             {
+                var filePath = "./wwwroot" + Clothing.ImageUrl;
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
                 _context.Clothing.Remove(Clothing);
                 await _context.SaveChangesAsync();
             }
