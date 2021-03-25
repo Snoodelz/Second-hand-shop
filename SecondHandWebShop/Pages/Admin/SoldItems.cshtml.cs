@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,26 +8,26 @@ using Microsoft.EntityFrameworkCore;
 using SecondHandWebShop.Data;
 using SecondHandWebShop.Models;
 
-namespace SecondHandWebShop.Pages.Admin.AdminOrders
+namespace SecondHandWebShop.Pages.Admin
 {
-    public class IndexModel : PageModel
+    public class SoldItemsModel : PageModel
     {
         private readonly SecondHandWebShop.Data.ProductContext _context;
 
-        public IndexModel(SecondHandWebShop.Data.ProductContext context)
+        public SoldItemsModel(SecondHandWebShop.Data.ProductContext context)
         {
             _context = context;
         }
 
-        public IList<Order> Order { get;set; }
+        public IList<Clothing> Clothing { get; set; }
 
         public ActionResult OnGetDelete(int? id)
         {
             if (id != null)
             {
-                var data = (from Order in _context.Order
-                            where Order.OrderId == id
-                            select Order).SingleOrDefault();
+                var data = (from clothings in _context.Clothing
+                            where clothings.Id == id
+                            select clothings).SingleOrDefault();
 
                 _context.Remove(data);
                 _context.SaveChanges();
@@ -36,7 +36,8 @@ namespace SecondHandWebShop.Pages.Admin.AdminOrders
         }
         public async Task OnGetAsync()
         {
-            Order = await _context.Order.OrderByDescending(x => x.OrderDate).ToListAsync();
+            Clothing = await _context.Clothing.ToListAsync();
         }
+
     }
 }
