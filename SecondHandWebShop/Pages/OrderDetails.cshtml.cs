@@ -47,6 +47,7 @@ namespace SecondHandWebShop.Pages
             var result = string.Join(",", OrderItems);
             Order.OrderItems = result;
 
+
             foreach (var item in CartModel.cart)
             {
                 if (item.Clothes.Category == "Merchandise")

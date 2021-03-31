@@ -28,7 +28,13 @@ namespace SecondHandWebShop.Pages.Admin
                 var data = (from clothings in _context.Clothing
                             where clothings.Id == id
                             select clothings).SingleOrDefault();
-
+                
+                //Kollar om bilden finns på datorn.
+                var filePath = "./wwwroot" + data.ImageUrl;
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
                 _context.Remove(data);
                 _context.SaveChanges();
             }

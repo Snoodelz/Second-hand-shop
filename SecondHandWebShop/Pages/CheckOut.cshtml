@@ -16,14 +16,21 @@
                 {
     @foreach (var item in CartModel.cart)
     {
-<li class="list-group-item d-flex justify-content-between lh-condensed">
-    <div>
-        <h6 class="my-0">@item.Clothes.Name</h6>
-        <small class="text-muted">@item.Clothes.Category</small>
-    </div>
-
-<span class="text-muted">@Math.Round(item.Clothes.Price)</span>
-</li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">@item.Clothes.Name</h6>
+                        <small class="text-muted">@item.Clothes.Category</small>
+                    </div>
+                    @if (item.Quantity > 1)
+                    {
+                    @*<p class="mb-0"><span><strong>@Math.Round(item.Clothes.Price) * @item.Quantity <br /> @Math.Round(item.Clothes.Price * item.Quantity) SEK</strong></span></p>*@
+                    <span class="text-muted">@Math.Round(item.Clothes.Price * item.Quantity)</span>
+                    }
+                    else
+                    {
+                    <span class="text-muted">@Math.Round(item.Clothes.Price)</span>
+                    }
+                </li>
                     Model.Total = CartModel.cart.Sum(item => item.Clothes.Price * item.Quantity);
                 }}
                 <li class="list-group-item d-flex justify-content-between">
