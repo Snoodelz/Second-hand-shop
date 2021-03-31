@@ -15,8 +15,6 @@
 </div>
 <br />
 
-@*<h2>Sold items</h2>*@
-
 <div class="btn-group">
     <a asp-page="Create" class="btn btn-outline-dark" role="button">Add new product</a>
     <a class="btn btn-outline-dark" asp-page="/Admin/Index">Back to Admin Home</a>
@@ -64,59 +62,65 @@
             <th>
                 @Html.DisplayName("Stockbalance")
             </th>
+            <th>
+                @Html.DisplayName("Sold")
+            </th>
             <th>Edit | Delete</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Clothing.Where(x => x.Category == "Merchandise"))
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Discount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
-                    <img src="@Url.Content(item.ImageUrl)" alt="alternative text" style="width:50px;height:50px" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Brand)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Color)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Material)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Size)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StockBalance)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Index" onclick="return confirm('Are you sure you want to delete this item?');" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+                <img src="@Url.Content(item.ImageUrl)" alt="alternative text" style="width:50px;height:50px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoldMerch)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Index" onclick="return confirm('Are you sure you want to delete this item?');" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

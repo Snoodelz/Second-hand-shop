@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +19,9 @@ namespace SecondHandWebShop.Models
         [DisplayName("Efternamn")]
         public string LastName { get; set; }
         [DisplayName("E-post")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
+            ErrorMessage = "Du måste ange din emailadress")]
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
         [DisplayName("Adress")]
         public string Address { get; set; }

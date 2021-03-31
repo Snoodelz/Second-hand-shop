@@ -22,6 +22,8 @@ namespace SecondHandWebShop.Models
         public string Material { get; set; }
         public string Size { get; set; }
         public int StockBalance { get; set; }
+        public string Weather { get; set; }
+        public int SoldMerch { get; set; }
 
         public Clothing()
         {

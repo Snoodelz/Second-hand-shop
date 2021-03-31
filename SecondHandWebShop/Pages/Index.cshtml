@@ -40,10 +40,10 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-            <p class="text-center first-page">Utvalda produkter</p>
+            <p class="text-center first-page">Bästsäljare</p>
             <div class="row">
 
-                @foreach (var item in Model.Merchandise.TakeLast(3))
+                @foreach (var item in Model.Merchandise.OrderByDescending(x => x.SoldMerch).Take(3))
                 {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">

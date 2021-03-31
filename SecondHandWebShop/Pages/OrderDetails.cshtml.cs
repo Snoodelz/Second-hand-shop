@@ -63,6 +63,7 @@ namespace SecondHandWebShop.Pages
                     for (int i = 0; i < item.Quantity; i++)
                     {
                         item.Clothes.StockBalance--;
+                        item.Clothes.SoldMerch++;
                     }
                 }
                 else

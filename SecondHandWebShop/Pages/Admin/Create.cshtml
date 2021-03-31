@@ -45,6 +45,18 @@
         </div>
         <div class="row">
             <div class="col-md-4">
+                <label asp-for="Clothing.Weather"></label>
+                <select class="form-control" id="selgender" asp-for="Clothing.Weather">
+                    <option selected disabled>-Select weather-</option>
+                    <option value="Warm">Warm</option>
+                    <option value="Cold">Cold</option>
+
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <label asp-for="Clothing.Description"></label>
                 <input asp-for="Clothing.Description" class="form-control" />
                 <span class="alert-danger" asp-validation-for="Clothing.Description"></span>

@@ -20,9 +20,6 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                @*<label asp-for="Clothing.Category"></label>
-                <input asp-for="Clothing.Category" class="form-control" />*@
-
                 <label asp-for="Clothing.Category"></label>
                 <select class="form-control" id="selgender" asp-for="Clothing.Category">
                     <option selected disabled>-Select category-</option>
@@ -34,6 +31,18 @@
                     <option value="Shoe">Shoe</option>
                     <option value="Merchandise">Merchandise</option>
                 </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="Clothing.Weather"></label>
+                <select class="form-control" id="selgender" asp-for="Clothing.Weather">
+                    <option selected disabled>-Select weather-</option>
+                    <option value="Warm">Warm</option>
+                    <option value="Cold">Cold</option>
+
+                </select>
+
             </div>
         </div>
         <div class="row">
