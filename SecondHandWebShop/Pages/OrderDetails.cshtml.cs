@@ -21,7 +21,7 @@ namespace SecondHandWebShop.Pages
         public Order Order { get; set; }
         public Clothing Clothing { get; set; }
         public decimal Total { get; set; }
-
+        public List<Item> CustomerOrder { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -47,6 +47,14 @@ namespace SecondHandWebShop.Pages
             var result = string.Join(",", OrderItems);
             Order.OrderItems = result;
 
+            List<Item> customerOrder = new List<Item>();
+
+            CartModel.cart.ToList().ForEach(x =>
+            {
+                customerOrder.Add(x);
+            });
+
+            CustomerOrder = customerOrder;
 
             foreach (var item in CartModel.cart)
             {

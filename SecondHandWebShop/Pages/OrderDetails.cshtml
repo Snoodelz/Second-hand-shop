@@ -10,13 +10,93 @@
 <hr />
 <br />
 <br />
-        <div class="card">
-            <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-                <i class="checkmark">✓</i>
-            </div>
-            <h1>Success</h1>
-                <p>Vi har mottagit din order!<br />  Du har ordernummer: @Model.Order.OrderId.ToString()</p>
+
+<div class="card">
+    <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="checkmark">✓</i>
+    </div>
+    <h1>Success</h1>
+    <p>Vi har mottagit din order!<br /></p>
+
+
+
+
+    <br />
+
+
+    <div class="card-body">
+        <div class="text-center">
+            <h6>Orderdetaljer</h6>
         </div>
 
+        @foreach (var item in Model.CustomerOrder)
+        {
+<div class="row mt-4">
+    <div class="col">
+        <div class="card card-2" style="width:100%; height:auto">
+            <div class="card-body">
+                <div class="media">
+                    <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="@item.Clothes.ImageUrl" width="135" height="135" /> </div>
+                    <div class="media-body my-auto text-right">
+                        <div class="row my-auto flex-column flex-md-row">
+                            <div class="col-auto my-auto">
+                                <h6 class="mb-0"> @item.Clothes.Name</h6>
+                            </div>
+
+                            <div class="col my-auto align-content-lg-stretch "> <small>Color : @item.Clothes.Color </small></div>
+                            <div class="col my-auto "> <small>Size : @item.Clothes.Size</small></div>
+                            <div class="col my-auto "> <small>Qty : @item.Quantity</small></div>
+                            <div class="col my-auto ">
+
+                                @if (item.Clothes.Discount > 0)
+                                {
+
+                                    if (item.Quantity > 1)
+                                    {
+                <h6 class="mb-0"> @Math.Round(item.Clothes.DiscountedPrice * item.Quantity) SEK</h6> }
+            else
+            {
+<h6 class="mb-0">@Math.Round(item.Clothes.DiscountedPrice) SEK</h6> }
+}
+else
+{
+if (item.Quantity > 1)
+{
+<h6 class="mb-0">@Math.Round(item.Clothes.Price * item.Quantity) SEK</h6> }
+else
+{
+<h6 class="mb-0">@Math.Round(item.Clothes.Price):-</h6>}
+
+}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>}
+
+        <br />
+        <div class="row mt-4">
+            <div class="col">
+                <div class="row justify-content-between">
+
+                    <div class="row invoice ">
+                        <div class="col">
+                            <p class="mb-1 text-left"><b>Totalt</b>:  @Math.Round(Model.Order.OrderTotal) SEK</p>
+                            <p class="mb-1 text-left"><b>Ordernummer</b>: @Model.Order.OrderId.ToString()</p>
+                            <p class="mb-1 text-left"><b>Orderdatum</b>: @Model.Order.OrderDate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br />
+<br />
 
 
