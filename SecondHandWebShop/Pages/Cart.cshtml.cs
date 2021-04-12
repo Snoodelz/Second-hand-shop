@@ -33,8 +33,6 @@ namespace SecondHandWebShop.Pages
             ProductsOnDiscount = _context.Clothing.Where(d => d.Discount > 0).ToList();
 
             Merchandise = _context.Clothing.Where(c => c.Category == "Merchandise").ToList();
-
-
         }
 
         public IActionResult OnGetDelete(string id)
@@ -76,12 +74,9 @@ namespace SecondHandWebShop.Pages
                 }
                 else
                 {
-                    for (int i = 0; i < cart.Count; i++)
+                    if (cart[index].Clothes.Category == "Merchandise")
                     {
-                        if (cart[i].Clothes.Category == "Merchandise")
-                        {
-                            cart[index].Quantity++;
-                        }
+                        cart[index].Quantity++;
                     }
                 }
                 _context.Clothing.Update(Product);
@@ -94,24 +89,15 @@ namespace SecondHandWebShop.Pages
 
         public IActionResult OnPostUpdate(int quantity, string id)
         {
-            Product = _context.Clothing.Find(Convert.ToInt32(id));
-            var index = Exists(cart, id);
             cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
 
-                cart.ToList().ForEach(x => {
-                    if (x.Clothes.Category == "Merchandise")
-                    {
-                    x.Quantity = quantity;
-                    }
-                });
+            var index = Exists(cart, id);
 
-            //for (var i = 0; i < cart.Count; i++)
-            //{
-            //        if (cart[i].Clothes.Category == "Merchandise")
-            //        {
-            //            cart[i].Quantity = quantity;
-            //        }
-            //}
+            if (cart[index].Clothes.Category == "Merchandise")
+            {
+                cart.ElementAt(index).Quantity = quantity;
+            }
+
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             return RedirectToPage("Cart");
         }

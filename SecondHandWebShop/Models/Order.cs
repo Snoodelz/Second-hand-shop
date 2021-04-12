@@ -20,7 +20,7 @@ namespace SecondHandWebShop.Models
         public string LastName { get; set; }
         [DisplayName("E-post")]
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
-            ErrorMessage = "Du måste ange din emailadress")]
+            ErrorMessage = "Ange en giltig e-postadress för leveransuppdateringar")]
         [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
         [DisplayName("Adress")]

@@ -58,18 +58,19 @@
 
                                             <div>
                                                 <div class="def-number-input number-input safari_only mb-0 w-100">
+                                               
 
                                                     @if (item.Clothes.Category == "Merchandise" && item.Clothes.StockBalance > 1)
                                                     {
-                                                        <form method="post" asp-page="cart" asp-page-handler="update">
-                                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();" type="submit" value="Update" class="minus btn-secondary">
-                                                                -
-                                                            </button>
-                                                            <input type="number" min="1" max="@item.Clothes.StockBalance" name="quantity" value="@item.Quantity">
-                                                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();" type="submit" value="Update" class="plus btn-secondary">
-                                                                +
-                                                            </button>
-                                                        </form>
+                                                    <form method="post" asp-page="Cart" asp-page-handler="Update" asp-route-id="@item.Clothes.Id">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();" class="minus btn-secondary">
+                                                            -
+                                                        </button>
+                                                        <input type="number" min="1" max="@item.Clothes.StockBalance" name="quantity" value="@item.Quantity">
+                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();" class="plus btn-secondary">
+                                                            +
+                                                        </button>
+                                                    </form>
                                                     }
                                                     
 
