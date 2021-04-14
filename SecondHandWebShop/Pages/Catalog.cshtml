@@ -15,7 +15,7 @@
                 <form method="get">
                     <p>
                         Varumärke:
-                        <select asp-for="ClothingBrands" asp-items="Model.Brands" class="alert-primary">
+                        <select asp-for="ClothingBrandsDropdown" asp-items="Model.Brands" class="alert-primary">
                             <option value="">All</option>
                         </select>
                         Namn: <input type="text" asp-for="SearchString" />
@@ -39,7 +39,7 @@
         <div class="col-lg-9">
             <br />
             <div class="row">
-                @if (Model.SearchString == null && Model.ClothingBrands == null)
+                @if (Model.SearchString == null && Model.ClothingBrandsDropdown == null)
                 {
                     @switch (Model.Category)
                     {
@@ -661,7 +661,7 @@
                 }
                 else if (Model.SearchString == null)
                 {
-                    @foreach (var item in Model.Clothing.Where(x => x.Brand == (Model.ClothingBrands)))
+                    @foreach (var item in Model.Clothing.Where(x => x.Brand == (Model.ClothingBrandsDropdown)))
                     {
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">
@@ -693,7 +693,7 @@
                         </div>
                     }
                 }
-                else if (Model.ClothingBrands == null)
+                else if (Model.ClothingBrandsDropdown == null)
                 {
                     @foreach (var item in Model.Clothing.Where(x => x.Name.Contains(Model.SearchString.ToUpper())))
                     {

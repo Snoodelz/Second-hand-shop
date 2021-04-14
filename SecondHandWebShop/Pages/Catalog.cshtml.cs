@@ -31,7 +31,7 @@ namespace SecondHandWebShop.Pages
         public string SearchString { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public string ClothingBrands { get; set; }
+        public string ClothingBrandsDropdown { get; set; }
 
         public SelectList Brands { get; set; }
         public WeatherData CurrentWeather { get; set; }
@@ -59,9 +59,9 @@ namespace SecondHandWebShop.Pages
                 clothings = clothings.Where(s => s.Name.Contains(SearchString));
             }
 
-            if (!string.IsNullOrEmpty(ClothingBrands))
+            if (!string.IsNullOrEmpty(ClothingBrandsDropdown))
             {
-                clothings = clothings.Where(x => x.Brand == ClothingBrands);
+                clothings = clothings.Where(x => x.Brand == ClothingBrandsDropdown);
             }
             Brands = new SelectList(await brandQuery.Distinct().ToListAsync());
             Clothing = await clothings.ToListAsync();
