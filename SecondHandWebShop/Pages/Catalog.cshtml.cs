@@ -10,6 +10,8 @@ using SecondHandWebShop.Models;
 using System.Net.Http;
 using SecondHandWebShop.Models.ExternalAPI;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace SecondHandWebShop.Pages
 {
@@ -25,8 +27,16 @@ namespace SecondHandWebShop.Pages
         [BindProperty(SupportsGet = true)]
         public string Category { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string ClothingBrands { get; set; }
+
+        public SelectList Brands { get; set; }
         public WeatherData CurrentWeather { get; set; }
 
+        public IList<Clothing> Clothing { get; set; }
         public IList<Clothing> AllClothing { get; set; }
         public IEnumerable<Clothing> Merchandise { get; set; }
         public IEnumerable<Clothing> AllHats { get; set; }
@@ -38,6 +48,24 @@ namespace SecondHandWebShop.Pages
         public IEnumerable<Clothing> ProductsOnDiscount { get; set; }
         public async Task OnGetAsync()
         {
+            IQueryable<string> brandQuery = from x in _context.Clothing
+                                            orderby x.Brand
+                                            select x.Brand;
+
+            var clothings = from m in _context.Clothing
+                            select m;
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                clothings = clothings.Where(s => s.Name.Contains(SearchString));
+            }
+
+            if (!string.IsNullOrEmpty(ClothingBrands))
+            {
+                clothings = clothings.Where(x => x.Brand == ClothingBrands);
+            }
+            Brands = new SelectList(await brandQuery.Distinct().ToListAsync());
+            Clothing = await clothings.ToListAsync();
+
             AllClothing = _context.Clothing.Where(c => c.Category != "Merchandise").ToList();
             Merchandise = _context.Clothing.Where(c => c.Category == "Merchandise").ToList();
             AllHats = _context.Clothing.Where(c => c.Category == "Hat").ToList();

@@ -12,6 +12,16 @@
 
             <img class="rounded mx-auto d-block" src="img/logo.png">
             <div class="list-group">
+                <form method="get">
+                    <p>
+                        Varumärke:
+                        <select asp-for="ClothingBrands" asp-items="Model.Brands" class="alert-primary">
+                            <option value="">All</option>
+                        </select>
+                        Namn: <input type="text" asp-for="SearchString" />
+                        <input type="submit" value="Filtrera" class="btn btn-primary border-light" />
+                    </p>
+                </form>
                 <a href="Catalog?Category=all" class="list-group-item">Alla produkter</a>
                 <a href="Catalog?Category=Merchandise" class="list-group-item">Merchandise</a>
                 <a href="Catalog?Category=Hat" class="list-group-item">Hattar</a>
@@ -29,355 +39,425 @@
         <div class="col-lg-9">
             <br />
             <div class="row">
-                @switch (Model.Category)
+                @if (Model.SearchString == null && Model.ClothingBrands == null)
                 {
-                    case "all":
+                    @switch (Model.Category)
+                    {
+                        case "all":
 
-                        @if (Model.CurrentWeather.data[0].temp > 10)
-                        {
+                            @if (Model.CurrentWeather.data[0].temp > 10)
+                            {
 
-            @foreach (var item in Model.AllClothing.Where(x => x.StockBalance > 0).OrderByDescending(x => x.Weather == "Warm"))
-            {
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="Product?ID=@item.Id">@item.Name</a>
-                        </h4>
-                        @if (item.Discount > 0)
-                        {
-                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p> }
-                                        else
-                                        {
-            <h5>@Math.Round(item.Price) kr</h5>}
-                        <p class="card-text">@item.Description</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">@item.Brand</small>
-                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                        {
-            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>}
-                    </div>
-                </div>
+                                @foreach (var item in Model.AllClothing.Where(x => x.StockBalance > 0).OrderByDescending(x => x.Weather == "Warm"))
+                                {
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                            <div class="card-body">
+                                                <h4 class="card-title">
+                                                    <a href="Product?ID=@item.Id">@item.Name</a>
+                                                </h4>
+                                                @if (item.Discount > 0)
+                                                {
+                                                    item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                    <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                    <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p> }
+                                                else
+                                                {
+                                                    <h5>@Math.Round(item.Price) kr</h5>}
+                                                <p class="card-text">@item.Description</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-muted">@item.Brand</small>
+                                                @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                                {
+                                                    <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>}
+                                            </div>
+                                        </div>
 
-            </div>} }
-        else
-        {
-            @foreach (var item in Model.AllClothing.Where(x => x.StockBalance > 0).OrderByDescending(x => x.Weather == "Cold"))
-            {
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="Product?ID=@item.Id">@item.Name</a>
-                        </h4>
-                        @if (item.Discount > 0)
-                        {
-                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p> }
-                                        else
-                                        {
-            <h5>@Math.Round(item.Price) kr</h5>}
-                        <p class="card-text">@item.Description</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">@item.Brand</small>
-                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                        {
-            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>}
-                    </div>
-                </div>
+                                    </div>} }
+                            else
+                            {
+                                @foreach (var item in Model.AllClothing.Where(x => x.StockBalance > 0).OrderByDescending(x => x.Weather == "Cold"))
+                                {
+                                    <div class="col-lg-4 col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                            <div class="card-body">
+                                                <h4 class="card-title">
+                                                    <a href="Product?ID=@item.Id">@item.Name</a>
+                                                </h4>
+                                                @if (item.Discount > 0)
+                                                {
+                                                    item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                    <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                    <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p> }
+                                                else
+                                                {
+                                                    <h5>@Math.Round(item.Price) kr</h5>}
+                                                <p class="card-text">@item.Description</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-muted">@item.Brand</small>
+                                                @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                                {
+                                                    <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>}
+                                            </div>
+                                        </div>
 
-            </div>}
-                        }
-                        break;
-                    case "Merchandise":
-                        @foreach (var item in Model.Merchandise)
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
+                                    </div>}
+                            }
+                            break;
+                        case "Merchandise":
+                            @foreach (var item in Model.Merchandise)
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
+                                </div>} break;
+                        case "Hat":
+                            @foreach (var item in Model.AllHats.Where(x => x.StockBalance > 0))
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </div>} break;
-                    case "Hat":
-                        @foreach (var item in Model.AllHats.Where(x => x.StockBalance > 0))
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
+                                </div>} break;
+                        case "Jacket":
+                            @foreach (var item in Model.AllJackets.Where(x => x.StockBalance > 0))
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
+                                </div>} break;
+                        case "Jewelry":
+                            @foreach (var item in Model.AllJewelries.Where(x => x.StockBalance > 0))
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </div>} break;
-                    case "Jacket":
-                        @foreach (var item in Model.AllJackets.Where(x => x.StockBalance > 0))
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
+                                </div>}break;
+                        case "Shirt":
+                            @foreach (var item in Model.AllShirts.Where(x => x.StockBalance > 0))
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
+                                </div>}break;
+                        case "Trouser":
+                            @foreach (var item in Model.AllTrousers.Where(x => x.StockBalance > 0))
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </div>} break;
-                    case "Jewelry":
-                        @foreach (var item in Model.AllJewelries.Where(x => x.StockBalance > 0))
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
+                                </div>}break;
+                        case "Shoe":
+                            @foreach (var item in Model.AllShoes.Where(x => x.StockBalance > 0))
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
+                                </div>}break;
+                        case "Discount":
+                            @foreach (var item in Model.ProductsOnDiscount.Where(x => x.StockBalance > 0))
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </div>}break;
-                    case "Shirt":
-                        @foreach (var item in Model.AllShirts.Where(x => x.StockBalance > 0))
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
-                                    </div>
-                                </div>
-                            </div>}break;
-                    case "Trouser":
-                        @foreach (var item in Model.AllTrousers.Where(x => x.StockBalance > 0))
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
-                                    </div>
-                                </div>
-                            </div>}break;
-                    case "Shoe":
-                        @foreach (var item in Model.AllShoes.Where(x => x.StockBalance > 0))
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
-                                    </div>
-                                </div>
-                            </div>}break;
-                    case "Discount":
-                        @foreach (var item in Model.ProductsOnDiscount.Where(x => x.StockBalance > 0))
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
-                                    </div>
-                                </div>
-                            </div>}break;
+                                </div>}break;
 
-                    default:
-                        @foreach (var item in Model.AllClothing.Where(x => x.StockBalance > 0))
-                        {
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="Product?ID=@item.Id">@item.Name</a>
-                                        </h4>
-                                        @if (item.Discount > 0)
-                                        {
-                                            item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
-                                            <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
-                                            <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
-                                        }
-                                        else
-                                        {
-                                            <h5>@Math.Round(item.Price) kr</h5>
-                                        }
-                                        <p class="card-text">@item.Description</p>
+                        default:
+                            @foreach (var item in Model.AllClothing.Where(x => x.StockBalance > 0))
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100">
+                                        <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="Product?ID=@item.Id">@item.Name</a>
+                                            </h4>
+                                            @if (item.Discount > 0)
+                                            {
+                                                item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                                <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                                <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                            }
+                                            else
+                                            {
+                                                <h5>@Math.Round(item.Price) kr</h5>
+                                            }
+                                            <p class="card-text">@item.Description</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">@item.Brand</small>
+                                            @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                            {
+                                                <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">@item.Brand</small>
-                                        @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
-                                        {
-                                            <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
-                                        }
-                                    </div>
-                                </div>
-                            </div>}break;
+                                </div>}break;
+                    }
                 }
-
+                else if (Model.SearchString == null)
+                {
+                    @foreach (var item in Model.Clothing.Where(x => x.Brand == (Model.ClothingBrands)))
+                    {
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="Product?ID=@item.Id">@item.Name</a>
+                                    </h4>
+                                    @if (item.Discount > 0)
+                                    {
+                                        item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                        <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                        <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                    }
+                                    else
+                                    {
+                                        <h5>@Math.Round(item.Price) kr</h5>
+                                    }
+                                    <p class="card-text">@item.Description</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">@item.Brand</small>
+                                    @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                    {
+                                        <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else if (Model.ClothingBrands == null)
+                {
+                    @foreach (var item in Model.Clothing.Where(x => x.Name.Contains(Model.SearchString)))
+                    {
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <a href="Product?ID=@item.Id"><img class="card-img-top" src="@item.ImageUrl" alt=""></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="Product?ID=@item.Id">@item.Name</a>
+                                    </h4>
+                                    @if (item.Discount > 0)
+                                    {
+                                        item.DiscountedPrice = item.Price - (item.Price * item.Discount) / 100;
+                                        <h5><s>@Math.Round(item.Price) kr</s> @Math.Round(item.DiscountedPrice) kr </h5>
+                                        <p style="color:palevioletred">@Math.Round(item.Discount)% OFF</p>
+                                    }
+                                    else
+                                    {
+                                        <h5>@Math.Round(item.Price) kr</h5>
+                                    }
+                                    <p class="card-text">@item.Description</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">@item.Brand</small>
+                                    @if (item.StockBalance > 0 && CatalogModel.AlreadyInCart(item) == false)
+                                    {
+                                        <a asp-page="Cart" asp-page-handler="buy" asp-route-id="@item.Id" class="btn float-right btn-outline-success btn-sm"><span class="fa fa-shopping-cart"></span></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
 
             </div>
             <!-- /.row -->
