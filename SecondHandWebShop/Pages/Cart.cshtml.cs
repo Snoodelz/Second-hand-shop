@@ -74,7 +74,7 @@ namespace SecondHandWebShop.Pages
                 }
                 else
                 {
-                    if (cart[index].Clothes.Category == "Merchandise" && cart[index].Clothes.StockBalance !> cart[index].Clothes.StockBalance)
+                    if (cart[index].Clothes.Category == "Merchandise" && cart[index].Quantity < Product.StockBalance)
                     {
                         cart[index].Quantity++;
                     }
