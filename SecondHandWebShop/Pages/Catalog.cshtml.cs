@@ -77,7 +77,7 @@ namespace SecondHandWebShop.Pages
             ProductsOnDiscount = _context.Clothing.Where(d => d.Discount != 0).ToList();
 
             var client = new HttpClient();
-            Task<string> getWeatherStringTask = client.GetStringAsync($"https://api.weatherbit.io/v2.0/current?key=cfc473a1f8e641e3a1ab9d0b5b4b57e3&lang=sv&city=stockholm");
+            Task<string> getWeatherStringTask = client.GetStringAsync($"https://api.weatherbit.io/v2.0/current?key=a2ba4dec961441e2ae9bf092c64f9e11&lang=sv&city=stockholm");
             string weatherString = await getWeatherStringTask;
             CurrentWeather = JsonSerializer.Deserialize<WeatherData>(weatherString);
         }
